@@ -1,0 +1,6 @@
+Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
+TestDate;2;1;2;2;1
+TestGraph;2;1;2;2;1
+TestLine;2;1;2;2;1
+TestLog;2;1;2;2;1
+TestSplitter;2;1;2;2;1

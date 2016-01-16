@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/Splitter.cpp -o main && ./main

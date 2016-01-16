@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/Point.cpp -o main && ./main

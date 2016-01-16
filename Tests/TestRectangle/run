@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/Line.cpp ../../Source/Splitter.cpp ../../Source/Date.cpp -o main && ./main

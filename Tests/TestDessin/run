@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Point.cpp ../../Source/Segment.cpp ../../Source/Dessin.cpp -o main -o main && ./main
