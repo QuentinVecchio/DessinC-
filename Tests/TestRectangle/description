@@ -10,4 +10,5 @@ On teste :
 	- La méthode Move
 	- La méthode GetWeight
 	- La méthode GetLength
+	- La méthode Copy
 Commande de compilation du main : g++ main.cpp ../../Source/Point.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp -o main

@@ -1,13 +1,13 @@
 /*************************************************************************
-                           Dessin  -  description
+                           Union  -  description
                              -------------------
     début                : 12/01/2016
     copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio	
 *************************************************************************/
 
-//---------- Interface de la classe <Dessin> (fichier Dessin.h) ------
-#if ! defined ( DESSIN_H )
-#define DESSIN_H
+//---------- Interface de la classe <Union> (fichier Union.h) ------
+#if ! defined ( UNION_H )
+#define UNION_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
@@ -22,121 +22,62 @@ using namespace std;
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Dessin>
-//  La classe Dessin permet le stockage de figure ainsi que l'application de fonction dessus
+// Rôle de la classe <Union>
+//  La classe Union permet le stockage d'une union de figures ainsi que l'application de fonction dessus
 //
 //------------------------------------------------------------------------ 
 
-class Dessin : public SetOfFigures
+class Union : public SetOfFigures
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    string Print() const;
+    virtual string Print() const;
     // Mode d'emploi :
-    //  Méthode qui affiche toutes les figures d'un dessin
+    //  Méthode qui affiche toutes les figures d'un Union
     //  Méthode virtuel 
     // Contrat :
     //
 
-    bool AddByCmd(const string &cmd);
-    // Paramètre
-    //  cmd : commande de creation
-    // Mode d'emploi :
-    //  Méthode qui ajoute une figure grâce à une ligne de commande
-    //  TRUE si la figure a été ajoutée, FALSE sinon
-    // Contrat :
-    //
-
-    bool IsIn( const Point &p ) const;
+    virtual bool IsIn( const Point &p ) const;
     // Paramètre
     //  p : point pour lequel on veut savoir si il fait partie d'une figure
     // Mode d'emploi :
-    //  Méthode qui test si un point appartient à un dessin
+    //  Méthode qui test si un point appartient à un Union
     //  TRUE si le point appartient, FALSE sinon
     // Contrat :
     //
 
-	bool IsInFigure( const string & name, const Point &p ) const;
-	// Paramètre
-	//	name : nom de la figure dans laquelle on veut faire le test
-	//	p : point pour lequel on veut savoir si il fait partie d'une figure
-	// Mode d'emploi :
-    //	Méthode qui test si un point appartient à une figure
-	//	TRUE si le point appartient, FALSE sinon
-	//	Méthode virtuel 
-    // Contrat :
-    //
-
-	void MoveFigure( const string & name, const Point &p);
-	// Paramètre
-	//	name : nom de la figure que l'on veut déplacer
-	//	p : point de déplacement
-	// Mode d'emploi :
-    //	Méthode qui déplace une figure
-    // Contrat :
-    //
-
-	bool Save(const string &link);
-	// Parametre
-	//	link : lien vers le fichier
-	// Mode d'emploi :
-    //	Méthode qui permet de sauvegarder un dessin directement dans un fichier
-    // Contrat :
-    //
-
-	bool Load(const string &link);
-	// Parametre
-	//	link : lien vers le fichier
-	// Mode d'emploi :
-    //	Méthode qui permet de créer un dessin directement depuis un fichier
-    // Contrat :
-    //
-
-	void Undo();
-	// Mode d'emploi :
-    //	Méthode qui permet de revenir en arrière après une modification
-	//	Limité à 20 fois
-    // Contrat :
-    //
-
-	void Redo();
-	// Mode d'emploi :
-    //	Méthode qui permet de revenir en avant une modification
-	//	Limité à 20 fois
-    // Contrat :
-    //
-
-    Dessin* Copy( ) const;
+    virtual Union* Copy( ) const;
     // Mode d'emploi :
     //  Renvoie une nouvelle copie de l'objet
     //  Méthode virtuel 
     // Contrat :
     //
 //------------------------------------------------- Surcharge d'opérateurs
-	Dessin & operator = ( const Dessin & unDessin );
+	Union & operator = ( const Union & unUnion );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-	Dessin ( const Dessin & unDessin );
+	Union ( const Union & unUnion );
 	//Paramètre
-	//	unDessin : Dessin déjà initialisé
+	//	unUnion : Union déjà initialisé
     // Mode d'emploi (constructeur de copie) :
     //	
     // Contrat :
     //
 
-    Dessin ( const string &name );
+    Union ( const string &name );
     // Mode d'emploi :
-    //	Constructeur de la classe Dessin
+    //	Constructeur de la classe Union
     // Contrat :
     //
 
-    virtual ~Dessin ( );
+    virtual ~Union ( );
     // Mode d'emploi :
     //	Détruit toutes les figures
     // Contrat :
@@ -164,6 +105,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <Dessin>
+//----------------------------------------- Types dépendants de <Union>
 
-#endif // DESSIN_H
+#endif // UNION_H

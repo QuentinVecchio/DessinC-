@@ -1,6 +1,8 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
-TestDate;2;1;2;2;1
-TestGraph;2;1;2;2;1
-TestLine;2;1;2;2;1
-TestLog;2;1;2;2;1
-TestSplitter;2;1;2;2;1
+TestDessin;2;0;2;2;0
+TestIntersection;2;0;2;2;0
+TestPoint;2;0;2;2;0
+TestPolygone;2;0;2;2;0
+TestRectangle;2;1;2;2;1
+TestSegment;2;0;2;2;0
+TestUnion;2;0;2;2;0

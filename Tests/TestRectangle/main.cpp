@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	//	premier constructeur
-	Rectangle r1("rectangle1", 0,5, 5, 0);
+	Rectangle r1("rectangle1", 0, 5, 5, 0);
 	//	second constructeur
 	Point p1(5,5);
 	Point p2(10,0);
@@ -38,5 +38,9 @@ int main()
 	cout << r1.GetWeight() << endl;
 	//	méthode GetLength
 	cout << r3.GetLength() << endl;
+	//	méthode Copy
+	Rectangle *r5 = r1.Copy();
+	cout << *r5 << endl;
+	delete r5;
 	return 0;
 }

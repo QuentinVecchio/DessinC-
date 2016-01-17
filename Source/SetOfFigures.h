@@ -1,18 +1,21 @@
 /*************************************************************************
-                           Figure  -  description
+                           SetOfFigures  -  description
                              -------------------
     début                : 12/01/2016
     copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio	
 *************************************************************************/
 
-//---------- Interface de la classe <Figure> (fichier Figure.h) ------
-#if ! defined ( FIGURE_H )
-#define FIGURE_H
+//---------- Interface de la classe <SetOfFigures> (fichier SetOfFigures.h) ------
+#if ! defined ( SETOFFIGURES_H )
+#define SETOFFIGURES_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <string>
+#include <map>
 #include "Point.h"
+#include "Figure.h"
+
 using namespace std;
 
 
@@ -21,74 +24,106 @@ using namespace std;
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Figure>
-//	La classe figure est une classe abstraite qui permet de représenter une
-//	figure.
+// Rôle de la classe <SetOfFigures>
+//	La classe SetOfFigures est une classe abstraite qui permet de représenter un
+//	ensemble de figure.
 //
 //------------------------------------------------------------------------ 
 
-class Figure
+class SetOfFigures : public Figure
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	string GetName() const;
+	map<string, Figure*> GetFigures() const;
 	// Mode d'emploi :
-    //	Cette méthode renvoie le nom d'une figure
+    //	Cette méthode renvoie un ensemble de figure
     // Contrat :
     //	
 
-	void SetName( const string &s );
+	void SetFigures( const map<string, Figure*> &ens );
 	// Paramètre
-	//	s : nouveau nom de la figure
+	//	ens : ensemble de figure
 	// Mode d'emploi :
-    //	Modification du nom d'une figure
+    //	Modification de l'ensemble de figure
     // Contrat :
     //
 
-	virtual string Print() const;
+    bool Add(Figure *f);
+    // Paramètre
+    //  name : nom de la figure
+    //  f : nouvelle figure
+    // Mode d'emploi :
+    //  Ajout d'une figure
+    //  True si l'ajout s'est fait, False sinon
+    // Contrat :
+    //
+
+    bool Remove(const string &name);
+    // Paramètre
+    //  name : nom de la figure
+    // Mode d'emploi :
+    //  Suppression d'une figure
+    //  True si la suppression s'est faite, False sinon
+    // Contrat :
+    //
+
+    void RemoveAll();
+    // Mode d'emploi :
+    //  Suppression de toutes les figures
+    // Contrat :
+    //
+
+    Figure* GetFigure(const string &name) const;
+    // Paramètre
+    //  name : nom de la figure
+    // Mode d'emploi :
+    //  Renvoie la figure associé au nom
+    // Contrat :
+    //
+
+	string Print() const;
 	// Mode d'emploi :
-    //	Méthode qui affiche une figure
-	//	Méthode virtuel 
+    //	Méthode qui affiche un SetOfFigures
     // Contrat :
     //
 
 	virtual bool IsIn( const Point &p ) const = 0;
 	// Paramètre
-	//	p : point pour lequel on veut savoir si il fait partie de la figure
+	//	p : point pour lequel on veut savoir si il fait partie de la SetOfFigures
 	// Mode d'emploi :
-    //	Méthode qui test si un point appartient à une figure
+    //	Méthode qui test si un point appartient à une SetOfFigures
 	//	TRUE si le point appartient, FALSE sinon
 	//	Méthode virtuel 
     // Contrat :
     //
-	
-	virtual void Move( const Point &p ) = 0;
-	// Paramètre
-	//	p : point de déplacement
-	// Mode d'emploi :
-    //	Méthode qui fait bouger une figure
-	//	Méthode virtuel 
-    // Contrat :
-    //
 
-    virtual Figure* Copy( ) const = 0;
+
+    SetOfFigures* Copy( ) const = 0;
     // Mode d'emploi :
     //  Renvoie une nouvelle copie de l'objet
     //  Méthode virtuel 
     // Contrat :
     //
+	
+	void Move( const Point &p );
+	// Paramètre
+	//	p : point de déplacement
+	// Mode d'emploi :
+    //	Méthode qui fait bouger une SetOfFigures
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
-	friend ostream& operator<<(ostream& out, const Figure &f);
+	friend ostream& operator<<(ostream& out, const SetOfFigures &f);
 	// Mode d'emploi :
     //	Méthode qui surcharge l'affichage
     // Contrat :
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    virtual ~Figure ( );
+    virtual ~SetOfFigures ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -98,17 +133,15 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	Figure ( const Figure & uneFigure );
+	SetOfFigures ( const SetOfFigures & uneSetOfFigures );
 	//Paramètre
-	//	uneFigure : figure déjà initialisée
+	//	uneSetOfFigures : unSetOfFigures déjà initialisée
     // Mode d'emploi (constructeur de copie) :
     //	Constructeur protégée car la classe est abstraite
     // Contrat :
     //
 
-    Figure ( const string &n );
-	//Paramètre
-	//	n : nom d'une figure
+    SetOfFigures ( const string & name);
     // Mode d'emploi :
     //	Constructeur protégée car la classe est abstraite
     // Contrat :
@@ -119,10 +152,10 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
+    map<string, Figure *> figures;
 
 private:
 //------------------------------------------------------- Attributs privés
-	string name;
 
 //---------------------------------------------------------- Classes amies
 
@@ -132,6 +165,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <Figure>
+//----------------------------------------- Types dépendants de <SetOfFigures>
 
-#endif // FIGURE_H
+#endif // SETOFFIGURES_H

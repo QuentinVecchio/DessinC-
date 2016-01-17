@@ -93,6 +93,13 @@ public:
     // Contrat :
     //
 
+    virtual Rectangle* Copy( ) const;
+    // Mode d'emploi :
+    //  Renvoie une nouvelle copie de l'objet
+    //  Méthode virtuel 
+    // Contrat :
+    //
+
 //------------------------------------------------- Surcharge d'opérateurs
     Rectangle & operator = ( const Rectangle & unRectangle );
     // Mode d'emploi :

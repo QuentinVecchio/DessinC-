@@ -81,6 +81,15 @@ string Rectangle::Print() const
 	return str;
 } //----- Fin de Print
 
+Rectangle* Rectangle::Copy( ) const
+// Algorithme :
+//
+{
+	Rectangle *r = new Rectangle(*this);
+	return r;
+} //----- Fin de Copy
+
+
 bool Rectangle::IsIn( const Point &point ) const
 // Algorithme :
 //

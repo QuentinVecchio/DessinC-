@@ -14,7 +14,9 @@
 //------------------------------------------------------ Include personnel
 #include "Dessin.h"
 #include "Fonctions.h"
+#include <iostream>
 #include <fstream>
+#include <sstream>
 
 //------------------------------------------------------------- Constantes
 
@@ -27,39 +29,11 @@
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-
-	map<string, Figure*> Dessin::GetFigures() const
+	bool Dessin::AddByCmd( const string &donnees )
 	// Algorithme :
 	//
 	{
-		return figures;
-	} //----- Fin de GetFigures
-
-	void Dessin::SetFigures( const map<string, Figure *> &figures )
-	// Algorithme :
-	//
-	{
-		this->figures = figures;
-	} //----- Fin de SetFigures
-
-	Figure * Dessin::GetFigure( const string &n ) const
-	// Algorithme :
-	//
-	{
-		Figure *f = figures.find(n);
-		if(f != figures.end())
-		{	return f->second();
-		}
-		else
-		{	return NULL;
-		}
-	} //----- Fin de GetFigure
-
-	bool Dessin::AddFigure( const string &donnees )
-	// Algorithme :
-	//
-	{
-		if(this->GetFigure(n) != NULL)
+		/*if(this->GetFigure(n) != NULL)
 		{
 			if(type == "R")
 			{	string name = "";
@@ -98,58 +72,22 @@
 			return true;
 		}
 		else
-		{	return false;
-		}
+		{	*/return false;
+		//}
 	} //----- Fin de AddFigure
-
-	bool Dessin::AddFigure( const Figure &fig )
-	// Algorithme :
-	//
-	{
-		if(this->GetFigure(fig.GetNom()) == NULL)
-		{	figures[fig.GetNom()] = fig;
-		}
-		else
-		{	return false;
-		}
-	} //----- Fin de DeleteFigure
-
-	bool Dessin::DeleteFigure( const string &n )
-	// Algorithme :
-	//
-	{
-		if(this->GetFigure(n) != NULL)
-		{	figures.erase(n);
-		}
-		else
-		{	return false;
-		}
-	} //----- Fin de DeleteFigure
 
 	string Dessin::Print() const
 	// Algorithme :
 	//
 	{
-		string p = "";
-		for(figures::const_iterator mi = figures.begin(); mi != figures.end(); ++mi)
-		{	if(mi->second() != NULL)
-			{	p += mi->second()->Print() + "\n";
-			}		
-		}
-		return p;
+		stringstream ss;
+		ss << "D " << this->GetName() << " " << this->figures.size() << endl;
+		ss << SetOfFigures::Print();
+		string str = ss.str();
+		return str;
 	} //----- Fin de Print
 
-	void Dessin::Move( const string & name, const Point &p)
-	// Algorithme :
-	//
-	{
-		Figure *f = this->GetFigure(name);
-		if(f != NULL)
-		{	f->Move(p);
-		}
-	} //----- Fin de Move
-
-	bool Dessin::IsIn( const string & name, const Point &p ) const
+	bool Dessin::IsInFigure( const string & name, const Point &p ) const
 	// Algorithme :
 	//
 	{
@@ -162,18 +100,42 @@
 		}
 	} //----- Fin de IsIn
 
+	bool Dessin::IsIn( const Point &p ) const
+	// Algorithme :
+	//
+	{
+		for(map<string, Figure *> ::const_iterator mi = this->figures.begin(); mi != this->figures.end(); ++mi)
+		{	if(mi->second != NULL)
+			{	if(mi->second->IsIn(p))
+					return true; 
+			}		
+		}
+		return false;
+	} //----- Fin de IsIn
+
+	void Dessin::MoveFigure( const string & name, const Point &p )
+	// Algorithme :
+	//
+	{
+		Figure *f = this->GetFigure(name);
+		if(f != NULL)
+		{	f->Move(p);
+		}
+	} //----- Fin de MoveFigure
+
 	bool Dessin::Save(const string &link)
 	// Algorithme :
 	//
 	{
-		ofstream fichier(link, ios::out);
+		ofstream fichier(link.c_str(), ios::out);
         if(fichier)
         {
-			for(figures::const_iterator mi = figures.begin(); mi != figures.end(); ++mi)
-			{	if(mi->second() != NULL)
-				{	fichier << mi->second() << endl;
+			for(map<string, Figure *> ::const_iterator mi = this->figures.begin(); mi != this->figures.end(); ++mi)
+			{	if(mi->second != NULL)
+				{	fichier << mi->second << endl;
 				}		
 			}
+			return true;
         }
 		else
 		{
@@ -181,19 +143,20 @@
 		}
 	} //----- Fin de Save
 
-	void Dessin::Load(const string &link)
+	bool Dessin::Load(const string &link)
 	// Algorithme :
 	//
 	{
-		ifstream fichier(link, ios::in);
+		ifstream fichier(link.c_str(), ios::in);
         if(fichier)
         {
-			figures.clear();
+			this->RemoveAll();
 			string ligne;
 			while(getline(fichier, ligne))
-		    {	this->AddFigure(ligne);
+		    {	this->AddByCmd(ligne);
 		    }
             fichier.close();
+            return true;
         }
 		else
 		{
@@ -221,36 +184,41 @@
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	} //----- Fin de Redo
 
+	Dessin* Dessin::Copy( ) const
+	// Algorithme :
+	//
+	{
+		Dessin * d = new Dessin(*this);
+		return d;
+	} //----- Fin de Copy
+
 //------------------------------------------------- Surcharge d'opérateurs
 	Dessin & Dessin::operator = ( const Dessin & unDessin )
 	// Algorithme :
 	//
 	{
-		this->figures = unDessin.figures;
+		this->SetName(unDessin.GetName());
+		map<string, Figure *> ens = unDessin.GetFigures();
+		for(map<string, Figure *>::iterator mi = ens.begin(); mi != ens.end(); ++mi)
+		{	if(mi->second != NULL)
+			{	figures[mi->first] = mi->second->Copy();
+			}	
+		}
 		return *this;
 	} //----- Fin de operator =
 
-	ostream& operator<<( ostream& out, const Dessin &d )
-	// Algorithme :
-	//
-	{
-		out << d.Print() << endl;
-		return out;
-	} //----- Fin de operator <<
-
 //-------------------------------------------- Constructeurs - destructeur
-	Dessin::Dessin ( const Dessin & unDessin )
+	Dessin::Dessin ( const Dessin & unDessin ) : SetOfFigures(unDessin)
 	// Algorithme :
 	//
 	{
 	#ifdef MAP
 		cout << "Appel au constructeur de copie de <Dessin>" << endl;
 	#endif
-		this->figures = unDessin.figures;
 	} //----- Fin de Dessin (constructeur de copie)
 
 
-	Dessin::Dessin ( )
+	Dessin::Dessin ( const string &name ) : SetOfFigures(name)
 	// Algorithme :
 	//
 	{
@@ -267,13 +235,6 @@
 	#ifdef MAP
 		cout << "Appel au destructeur de <Dessin>" << endl;
 	#endif
-		for(figures::const_iterator mi = figures.begin(); mi != figures.end(); ++mi)
-		{	if(mi->second() != NULL)
-			{	delete mi->second();
-				p += mi->second()->Print();
-			}		
-		}
-		figures.clear();
 	} //----- Fin de ~Dessin
 
 

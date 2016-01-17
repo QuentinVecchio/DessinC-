@@ -14,7 +14,7 @@ RM=@rm
 ECHO=@echo
 RMFLAGS=-f
 OUTPUT=-o
-INT= Figure.h Dessins.h
+INT= Figure.h Dessin.h Point.h Rectangle.h
 CPP=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 CLEAR=clear
@@ -24,13 +24,15 @@ INCPATH=
 
 all : $(EXECNAME)
 
-$(EXECNAME) : main.o Parseur.o Line.o
+$(EXECNAME) : main.o $(OBJ)
 	$(ECHO) "Edition des liens de $(EXECNAME)"
-	$(EDL) $(EDLFLAGS) main.o Parseur.o Line.o $(OUTPUT) $(EXECNAME)
+	$(EDL) $(EDLFLAGS) main.o $(OBJ) $(OUTPUT) $(EXECNAME)
 
 main.o : 
 
-Line.o : Parseur.o
+Rectangle.o : Figure.o Point.o
+
+Dessin.o : Rectangle.o Point.o
 
 %.o : %.cpp
 	$(ECHO) "Compilation de $<"

@@ -34,6 +34,12 @@ public:
     // Contrat :
     //
 
+    virtual Segment* Copy( ) const;
+    // Mode d'emploi :
+    //  Renvoie une nouvelle copie de l'objet
+    //  Méthode virtuel 
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Segment & operator = ( const Segment & unSegment );

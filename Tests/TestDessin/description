@@ -1,16 +1,19 @@
-Ce test permet de tester la classe Dessin
+Ce test permet de tester la classe Dessin (et SetOfFigures)
 On teste :
 	- Le constructeur
 	- Le constructeur par copie
 	- La surcharge du <<
 	- La surcharge du =
 	- La méthode Print
-	- La méthode Add avec une figure
-	- La méthode Add avec une string
+	- La méthode Add
 	- La méthode Remove
+	- La méthode Move
+	- La méthode Move 2
+	- La méthode IsIn
+	- La méthode IsIn 2
 	- La méthode Save
 	- La méthode Load
 	- La méthode Move
 	- La méthode Undo
 	- La méthode Redo
-Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Point.cpp ../../Source/Segment.cpp ../../Source/Dessin.cpp -o main
+Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp ../../Source/Point.cpp ../../Source/SetOfFigures.cpp ../../Source/Dessin.cpp -o main

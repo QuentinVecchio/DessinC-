@@ -33,6 +33,13 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+	Segment* Segment::Copy( ) const
+    // Algorithme :
+	//
+	{
+		Segment * s = new Segment(*this);
+		return s;
+	} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
 Segment & Segment::operator = ( const Segment & unSegment )
