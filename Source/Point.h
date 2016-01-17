@@ -34,6 +34,31 @@ public:
     // Contrat :
     //
 
+    int GetX () const;
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //
+
+    void SetX (const int &x);
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //
+
+    int GetY () const;
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //
+
+    void SetY (const int &y);
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //
+
+
 //------------------------------------------------- Surcharge d'opérateurs
     Point & operator = ( const Point & unPoint );
     // Mode d'emploi :

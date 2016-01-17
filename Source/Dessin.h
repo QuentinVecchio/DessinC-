@@ -23,7 +23,7 @@ using namespace std;
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Dessin>
-//
+//  La classe Dessin permet le stockage de figure ainsi que l'application de fonction dessus
 //
 //------------------------------------------------------------------------ 
 
@@ -58,11 +58,19 @@ public:
 
 	bool AddFigure( const string &donnees );
 	//Paramètre :
-	//	type : type de la figure
 	//	donnees : données pour la construction de la figure
 	// Mode d'emploi :
-    //	Cette méthode crée une nouvelle figure
+    //	Cette méthode crée et ajoute une nouvelle figure
 	//	Renvoie TRUE si la figure a bien été créée, renvoie FALSE sinon
+    // Contrat :
+    //
+
+    bool AddFigure( const Figure &fig );
+    //Paramètre :
+    //  fig : une figure
+    // Mode d'emploi :
+    //  Cette méthode ajoute une nouvelle figure
+    //  Renvoie TRUE si la figure a bien été créée, renvoie FALSE sinon
     // Contrat :
     //
 

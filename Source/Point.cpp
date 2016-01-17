@@ -33,11 +33,38 @@ string Point::Print () const
 //
 {
 	stringstream ss;
-	ss << "(" <<  x << "," << y <<")";
+	ss <<  x << " " << y;
 	string str = ss.str();
 	return str;
-} //----- Fin de Méthode
+} //----- Fin de Print
 
+int Point::GetX () const
+// Algorithme :
+//
+{
+	return x;
+} //----- Fin de GetX
+
+void Point::SetX (const int &x)
+// Algorithme :
+//
+{
+	this->x = x;
+} //----- Fin de SetX
+
+int Point::GetY () const
+// Algorithme :
+//
+{
+	return y;
+} //----- Fin de GetY
+    
+void Point::SetY (const int &y)
+// Algorithme :
+//
+{
+	this->y = y;
+} //----- Fin de SetY
 
 //------------------------------------------------- Surcharge d'opérateurs
 Point & Point::operator = ( const Point & aPoint )
@@ -72,7 +99,7 @@ ostream& operator << (ostream &out, const Point &unPoint)
 // Algorithme :
 //
 {
-	out << unPoint.Print() << endl;
+	out << unPoint.Print();
 	return out;
 }//----- Fin de operator <<
 

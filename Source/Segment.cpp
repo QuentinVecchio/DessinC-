@@ -53,7 +53,7 @@ Segment::Segment ( const Segment & unSegment )
 } //----- Fin de Segment (constructeur de copie)
 
 
-Segment::Segment ( )
+Segment::Segment ( string nom, int x1, int y1, int x2, int y2 )
 // Algorithme :
 //
 {

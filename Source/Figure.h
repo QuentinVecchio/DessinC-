@@ -12,7 +12,9 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <string>
+#include "Point.h"
 using namespace std;
+
 
 //------------------------------------------------------------- Constantes 
 
@@ -52,7 +54,7 @@ public:
     // Contrat :
     //
 
-	virtual bool IsIn( const Point &p ) const;
+	virtual bool IsIn( const Point &p ) const = 0;
 	// Paramètre
 	//	p : point pour lequel on veut savoir si il fait partie de la figure
 	// Mode d'emploi :
@@ -62,7 +64,7 @@ public:
     // Contrat :
     //
 	
-	virtual void Move( const Point &p );
+	virtual void Move( const Point &p ) = 0;
 	// Paramètre
 	//	p : point de déplacement
 	// Mode d'emploi :

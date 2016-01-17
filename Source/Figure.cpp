@@ -25,7 +25,6 @@
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Figure::Méthode ( liste de paramètres )
 
 	string Figure::GetName() const
 	// Algorithme :
@@ -34,7 +33,7 @@
 		return name;
 	} //----- Fin de GetName
 
-	void Figure::SetName( const string &s );
+	void Figure::SetName( const string &s )
 	// Algorithme :
 	//
 	{
@@ -54,7 +53,7 @@
 	// Algorithme :
 	//
 	{
-		out << f.Print() << endl;
+		out << f.Print();
 		return out;
 	}//----- Fin de operator << 
 
@@ -76,7 +75,7 @@
 	#ifdef MAP
 		cout << "Appel au constructeur de <Figure>" << endl;
 	#endif
-		name = n
+		name = n;
 	} //----- Fin de Figure
 
 

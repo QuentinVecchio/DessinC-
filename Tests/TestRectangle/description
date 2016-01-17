@@ -1,7 +1,13 @@
-Ce test permet de tester la classe Line
+Ce test permet de tester la classe Rectangle
 On teste :
-	- Le constructeur
-	- La surcharge du <<
-	- La surcharge du =
+	- Le premier constructeur
+	- Le second constructeur
 	- Le constructeur par copie
-Commande de compilation du main : g++ main.cpp ../../Source/Line.cpp ../../Source/Splitter.cpp ../../Source/Date.cpp -o main
+	- La surcharge du =
+	- La surcharge du <<
+	- La méthode Print
+	- La méthode IsIn
+	- La méthode Move
+	- La méthode GetWeight
+	- La méthode GetLength
+Commande de compilation du main : g++ main.cpp ../../Source/Point.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp -o main

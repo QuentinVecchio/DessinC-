@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
 
-    Segment (string nom, int x1, int y1, int x1, int y1 );
+    Segment ( string nom, int x1, int y1, int x2, int y2 );
     // Mode d'emploi :
     //
     // Contrat :

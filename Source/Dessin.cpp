@@ -102,6 +102,18 @@
 		}
 	} //----- Fin de AddFigure
 
+	bool Dessin::AddFigure( const Figure &fig )
+	// Algorithme :
+	//
+	{
+		if(this->GetFigure(fig.GetNom()) == NULL)
+		{	figures[fig.GetNom()] = fig;
+		}
+		else
+		{	return false;
+		}
+	} //----- Fin de DeleteFigure
+
 	bool Dessin::DeleteFigure( const string &n )
 	// Algorithme :
 	//
@@ -133,10 +145,7 @@
 	{
 		Figure *f = this->GetFigure(name);
 		if(f != NULL)
-		{	return f->Move(p);
-		}
-		else
-		{	return false;
+		{	f->Move(p);
 		}
 	} //----- Fin de Move
 
