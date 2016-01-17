@@ -33,14 +33,14 @@ int Rectangle::GetWeight() const
 // Algorithme :
 //
 {
-	return (abs(p2.GetX()) - abs(p1.GetX()));
+	return (p2.GetX() - p1.GetX());
 } //----- Fin de GetWeight
 
 int Rectangle::GetLength() const
 // Algorithme :
 //
 {
-	return (abs(p1.GetY()) - abs(p2.GetX()));
+	return (p1.GetY() - p2.GetY());
 } //----- Fin de GetLength
 
 Point Rectangle::GetP1() const
