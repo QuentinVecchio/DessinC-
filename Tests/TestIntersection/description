@@ -1,14 +1,12 @@
-Ce test permet de tester la classe Date
+Ce test permet de tester la classe Intersection
 On teste :
 	- Le constructeur
-	- La méthode SetDate
+	- Le constructeur par copie
 	- La surcharge du <<
 	- La surcharge du =
-	- La surcharge du ==
-	- La surcharge du !=
-	- La surcharge du <=
-	- La surcharge du >=
-	- La surcharge du <
-	- La surcharge du >
-	- Le constructeur par copie
-Commande de compilation du main : g++ main.cpp ../../Source/Date.cpp ../../Source/Splitter.cpp -o main
+	- La méthode Print
+	- La méthode Add
+	- La méthode Remove
+	- La méthode Move
+	- La méthode IsIn
+Commande de compilation du main : g++ main.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/SetOfFigures.cpp ../../Source/Rectangle.cpp ../../Source/Point.cpp -o main 

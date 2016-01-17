@@ -14,7 +14,7 @@ RM=@rm
 ECHO=@echo
 RMFLAGS=-f
 OUTPUT=-o
-INT= Figure.h Dessin.h Point.h Rectangle.h
+INT= Figure.h Dessin.h Point.h Rectangle.h SetOfFigure.h Union.h 
 CPP=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 CLEAR=clear
@@ -28,11 +28,15 @@ $(EXECNAME) : main.o $(OBJ)
 	$(ECHO) "Edition des liens de $(EXECNAME)"
 	$(EDL) $(EDLFLAGS) main.o $(OBJ) $(OUTPUT) $(EXECNAME)
 
-main.o : 
+main.o : Figure.o SetOfFigure.o Rectangle.o Point.o Dessin.o Union.o
+
+SetOfFigure.o : Figure.o
 
 Rectangle.o : Figure.o Point.o
 
-Dessin.o : Rectangle.o Point.o
+Dessin.o : Figure.o SetOfFigure.o Point.o
+
+Union.o : Figure.o SetOfFigure.o Point.o
 
 %.o : %.cpp
 	$(ECHO) "Compilation de $<"
