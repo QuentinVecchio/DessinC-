@@ -51,6 +51,23 @@ int main()
 	cout << d1 << endl;
 	cout << d2 << endl;
 	cout << d3 << endl;
+	//	Méthode AddByCmd
+	string cmd;
+	//getline(cin,cmd); // Test Segment
+	//d2.AddByCmd(cmd);
+	getline(cin,cmd); // Test Rectangle
+	d1.AddByCmd(cmd);
+	getline(cin,cmd); // Test Rectangle
+	d1.AddByCmd(cmd);
+	getline(cin,cmd); // Test Rectangle
+	d1.AddByCmd(cmd);
+	//getline(cin,cmd); // Test Polygone
+	//d2.AddByCmd(cmd);
+	getline(cin,cmd); // Test Union
+	d1.AddByCmd(cmd);
+	getline(cin,cmd); // Test Intersection
+	d1.AddByCmd(cmd);
+	cout << d1 << endl;
 	//	Méthode Save
 	//	Méthode Load
 	//	Méthode Undo

@@ -14,6 +14,11 @@
 //------------------------------------------------------ Include personnel
 #include "Dessin.h"
 #include "Fonctions.h"
+#include "Rectangle.h"
+//#include "Segment.h"
+#include "Union.h"
+#include "Intersection.h"
+#include "Fonctions.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -33,47 +38,55 @@
 	// Algorithme :
 	//
 	{
-		/*if(this->GetFigure(n) != NULL)
-		{
-			if(type == "R")
-			{	string name = "";
-				string *tabData = new string[100];
-				int nElt = Parseur(donnees, ' ', tabData, 100);
-				if(nElt != 6)
-				{	int x1 = stoi(tabData[2]), y1 = stoi(tabData[3]), x2 = stoi(tabData[4]), y2 = stoi(tabData[5]);
-					name = tabData[1];
-					Rectangle *r = new Rectangle(name, x1, y1, x2, y2);
-					figures[name] = r;
+		string *tabData = new string[100];
+		int nElt = Parseur(donnees, ' ', tabData, 100);
+		if(nElt >= 3)
+		{	string type = tabData[0];
+			string n = tabData[1];
+			if(this->GetFigure(n) == NULL)
+			{	if(type == "S" && nElt == 6)
+				{	/*Point p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
+					Point p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+					Segment *s = new Segment(n, p1, p2);
+					this->Add(s);*/
+				}
+				else if(type == "R" && nElt == 6)
+				{	Point p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
+					Point p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+					Rectangle *r = new Rectangle(n, p1, p2);
+					this->Add(r);
+				} 
+				else if(type == "PC")
+				{
+
+				}
+				else if(type == "OR")
+				{	Union *u = new Union(n);
+					for(int i=2;i<nElt;i++)
+					{	Figure *f = this->GetFigure(tabData[i]);
+						if(f != NULL)
+						{	u->Add(f->Copy());
+						}
+					}
+					this->Add(u);
+				}
+				else if(type == "OI")
+				{	Intersection *u = new Intersection(n);
+					for(int i=2;i<nElt;i++)
+					{	Figure *f = this->GetFigure(tabData[i]);
+						if(f != NULL)
+						{	u->Add(f->Copy());
+						}
+					}
+					this->Add(u);
 				}
 				else
 				{	return false;
 				}
+				return true;
 			}
-			else if(type == "S")
-			{	string name = "";
-				string *tabData = new string[100];
-				int nElt = Parseur(donnees, ' ', tabData, 100);
-				if(nElt != 6)
-				{	int x1 = stoi(tabData[2]), y1 = stoi(tabData[3]), x2 = stoi(tabData[4]), y2 = stoi(tabData[5]);
-					name = tabData[1];
-					Segment *s = new Segment(name, x1, y1, x2, y2);
-					figures[name] = s;
-				}
-				else
-				{	return false;
-				}	
-			}
-			else if(type == "PC")
-			{	
-			}
-			else
-			{	return false;
-			}
-			return true;
 		}
-		else
-		{	*/return false;
-		//}
+		return false;
 	} //----- Fin de AddFigure
 
 	string Dessin::Print() const
@@ -81,7 +94,7 @@
 	//
 	{
 		stringstream ss;
-		ss << "D " << this->GetName() << " " << this->figures.size() << endl;
+		ss << "D " << this->GetName() << " " << this->figures.size();
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;

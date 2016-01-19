@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include "Dessin.h"
+#include "Fonctions.h"
 
 using namespace std;
 //------------------------------------------------------ Include personnel
@@ -27,3 +29,19 @@ using namespace std;
 
 //---------------------------------------------------------- Fonction main
 
+int main()
+{
+	string commande = "";
+	Dessin d("Dessin");
+	bool stop = false;
+	do
+	{	cin.tie(0);
+		if(getline(cin,commande))
+		{	stop = interpretreCommande(commande, d);
+		}
+		else
+		{	stop = true;
+		}
+	}while(stop == false);
+	return 0;
+}
