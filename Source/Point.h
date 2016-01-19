@@ -72,7 +72,19 @@ public:
     // Contrat :
     //
 
+    Point operator - ( const Point & aPoint ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     Point operator * ( const int lambda ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    int operator * ( const Point lambda ) const;
     // Mode d'emploi :
     //
     // Contrat :
