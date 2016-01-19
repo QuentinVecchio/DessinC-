@@ -14,7 +14,7 @@ RM=@rm
 ECHO=@echo
 RMFLAGS=-f
 OUTPUT=-o
-INT= Figure.h Dessin.h Point.h Rectangle.h SetOfFigure.h Union.h 
+INT= Figure.h Dessin.h Point.h Rectangle.h SetOfFigures.h Union.h Segment.h
 CPP=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 CLEAR=clear

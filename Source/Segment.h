@@ -33,13 +33,44 @@ public:
     //
     // Contrat :
     //
-
-    virtual Segment* Copy( ) const;
-    // Mode d'emploi :
-    //  Renvoie une nouvelle copie de l'objet
-    //  Méthode virtuel 
+	string Print() const;
+	// Mode d'emploi :
+    //	Méthode qui affiche une figure
+	//	Méthode virtuel
     // Contrat :
     //
+
+	bool IsIn( const Point &p ) const;
+	// Paramètre
+	//	p : point pour lequel on veut savoir si il fait partie de la figure
+	// Mode d'emploi :
+    //	Méthode qui test si un point appartient à une figure
+	//	TRUE si le point appartient, FALSE sinon
+	//	Méthode virtuel
+    // Contrat :
+    //
+
+	void Move( const Point &p );
+	// Paramètre
+	//	p : point de déplacement
+	// Mode d'emploi :
+    //	Méthode qui fait bouger une figure
+	//	Méthode virtuel
+    // Contrat :
+    //
+
+    Segment* Copy( ) const;
+    // Mode d'emploi :
+    //  Renvoie une nouvelle copie de l'objet
+    //  Méthode virtuel
+    // Contrat :
+    //
+
+	Point GetP1 ();
+	Point GetP2 ();
+	void SetP1 ();
+	void SetP2 ();
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Segment & operator = ( const Segment & unSegment );
@@ -50,13 +81,13 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Segment ( const Segment & unSegment );
+    Segment ( const Segment & aSegment );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Segment ( string nom, int x1, int y1, int x2, int y2 );
+    Segment (string nom, int x1, int y1, int x2, int y2 );
     // Mode d'emploi :
     //
     // Contrat :
@@ -100,4 +131,4 @@ private:
 
 //----------------------------------------- Types dépendants de <Segment>
 
-#endif // XXX_H
+#endif // Segment_H

@@ -84,6 +84,14 @@ Point Point::operator + ( const Point & aPoint ) const
 	return p;
 } //----- Fin de operator +
 
+Point Point::operator - ( const Point & aPoint ) const
+// Algorithme :
+//
+{
+	Point p (x - aPoint.x,y - aPoint.y);
+	return p;
+} //----- Fin de operator -
+
 
 Point Point::operator * ( const int lambda ) const
 // Algorithme :
@@ -93,6 +101,13 @@ Point Point::operator * ( const int lambda ) const
 	int ny= y*lambda;
 	Point p (nx,ny);
 	return p;
+} //----- Fin de operator *
+
+int Point::operator * ( const Point aPoint ) const
+// Algorithme :
+//
+{
+	return x*aPoint.x + y *aPoint.y;
 } //----- Fin de operator *
 
 ostream& operator << (ostream &out, const Point &unPoint)
