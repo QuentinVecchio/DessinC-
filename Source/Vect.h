@@ -1,13 +1,13 @@
 /*************************************************************************
-                          Point -  description
+                          Vect -  description
                              -------------------
     début                : 12/01/16
     copyright            : (C) 2016 par Adrien Lepic et Quentin Vecchio
 *************************************************************************/
 
-//---------- Interface de la classe Point(fichier Point.h) ------
-#if ! defined ( POINT_H )
-#define POINT_H
+//---------- Interface de la classe Vect(fichier Vect.h) ------
+#if ! defined ( Vect_H )
+#define Vect_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
@@ -17,12 +17,12 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe Point.h
-//  Cette classe permet l'implémentation d'un point de coordonné entière
+// Rôle de la classe Vect.h
+//  Cette classe permet l'implémentation d'un Vect de coordonné entière
 //
 //------------------------------------------------------------------------
 
-class Point
+class Vect
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -60,56 +60,56 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Point & operator = ( const Point & unPoint );
+    Vect & operator = ( const Vect & unVect );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Point operator + ( const Point & aPoint ) const;
+    Vect operator + ( const Vect & aVect ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Point operator - ( const Point & aPoint ) const;
+    Vect operator - ( const Vect & aVect ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Point operator * ( const int lambda ) const;
+    Vect operator * ( const int lambda ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    int operator * ( const Point lambda ) const;
+    int operator * ( const Vect lambda ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    friend ostream& operator << (ostream &out, const Point &unPoint);
+    friend ostream& operator << (ostream &out, const Vect &unVect);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    Point ( const Point & Point );
+    Vect ( const Vect & Vect );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Point (int ax, int ay );
+    Vect (int ax, int ay );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Point ( );
+    virtual ~Vect ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -139,6 +139,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <Point>
+//----------------------------------------- Types dépendants de <Vect>
 
-#endif // POINT_H
+#endif // Vect_H

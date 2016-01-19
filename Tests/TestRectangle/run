@@ -1,1 +1,1 @@
-g++ main.cpp ../../Source/Point.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp -o main && ./main
+g++ main.cpp ../../Source/Vect.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp -o main && ./main

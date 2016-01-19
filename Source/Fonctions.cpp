@@ -43,7 +43,7 @@ bool interpretreCommande(string commande, Dessin &dessin)
 		else if(nomCommande == "MOVE" && nParam == 3)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
-			Point p(x,y);
+			Vect p(x,y);
 			dessin.IsInFigure(getParametre(commande,1),p);
 		}
 		else if(nomCommande == "LIST")
@@ -60,7 +60,7 @@ bool interpretreCommande(string commande, Dessin &dessin)
 		else if(nomCommande == "MOVE" && nParam == 3)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
-			Point p(x,y);
+			Vect p(x,y);
 			dessin.MoveFigure(getParametre(commande,1),p);
 		}
 		else if(nomCommande == "REDO" && nParam == 1)

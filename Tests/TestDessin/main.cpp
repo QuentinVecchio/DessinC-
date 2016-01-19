@@ -3,7 +3,7 @@
 #include <vector>
 #include "../../source/Dessin.h"
 #include "../../source/Rectangle.h"
-#include "../../source/Point.h"
+#include "../../source/Vect.h"
 
 using namespace std;
 
@@ -27,21 +27,21 @@ int main()
 	cout << d2 << endl;
 	cout << d3 << endl;
 	//	Méthode Move
-	Point p1(2,2);
+	Vect p1(2,2);
 	d1.Move(p1);
 	cout << d1 << endl;
 	//	Méthode Move 2
-	Point p2(2,2);
+	Vect p2(2,2);
 	d1.MoveFigure("rectangle2",p2);
 	cout << d1 << endl;
 	//	Méthode IsIn
-	Point p3(3,2);
-	Point p4(15,2);
+	Vect p3(3,2);
+	Vect p4(15,2);
 	cout << d1.IsIn(p3) << endl;
 	cout << d1.IsIn(p4) << endl;
 	//	Méthode IsIn 2
-	Point p5(2,1);
-	Point p6(8,6);
+	Vect p5(2,1);
+	Vect p6(8,6);
 	cout << d1.IsInFigure("rectangle1",p5) << endl;
 	cout << d1.IsInFigure("rectangle2",p6) << endl;
 	//	Méthode Remove

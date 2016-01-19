@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/Vect.cpp -o main && ./main

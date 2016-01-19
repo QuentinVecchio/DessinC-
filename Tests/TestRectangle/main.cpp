@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../../source/Point.h"
+#include "../../source/Vect.h"
 #include "../../source/Rectangle.h"
 
 using namespace std;
@@ -11,8 +11,8 @@ int main()
 	//	premier constructeur
 	Rectangle r1("rectangle1", 0, 5, 5, 0);
 	//	second constructeur
-	Point p1(5,5);
-	Point p2(10,0);
+	Vect p1(5,5);
+	Vect p2(10,0);
 	Rectangle r2("rectangle2", p1, p2);
 	//	constructeur par copie
 	Rectangle r3(r2);
@@ -26,12 +26,12 @@ int main()
 	cout << r3.Print() << endl; 
 	cout << r4 << endl;
 	//	méthode IsIn
-	Point p3(2,2);
-	Point p4(6,8);
+	Vect p3(2,2);
+	Vect p4(6,8);
 	cout << r1.IsIn(p3) << endl;
 	cout << r2.IsIn(p4) << endl;
 	//	méthode Move
-	Point p5(1,1);
+	Vect p5(1,1);
 	r3.Move(p5);
 	cout << r3 << endl;
 	//	méthode GetWeight

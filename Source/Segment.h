@@ -11,7 +11,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Figure.h"
-#include "Point.h"
+#include "Vect.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -40,19 +40,19 @@ public:
     // Contrat :
     //
 
-	bool IsIn( const Point &p ) const;
+	bool IsIn( const Vect &p ) const;
 	// Paramètre
-	//	p : point pour lequel on veut savoir si il fait partie de la figure
+	//	p : Vect pour lequel on veut savoir si il fait partie de la figure
 	// Mode d'emploi :
-    //	Méthode qui test si un point appartient à une figure
-	//	TRUE si le point appartient, FALSE sinon
+    //	Méthode qui test si un Vect appartient à une figure
+	//	TRUE si le Vect appartient, FALSE sinon
 	//	Méthode virtuel
     // Contrat :
     //
 
-	void Move( const Point &p );
+	void Move( const Vect &p );
 	// Paramètre
-	//	p : point de déplacement
+	//	p : Vect de déplacement
 	// Mode d'emploi :
     //	Méthode qui fait bouger une figure
 	//	Méthode virtuel
@@ -66,8 +66,8 @@ public:
     // Contrat :
     //
 
-	Point GetP1 ();
-	Point GetP2 ();
+	Vect GetP1 ();
+	Vect GetP2 ();
 	void SetP1 ();
 	void SetP2 ();
 
@@ -93,7 +93,7 @@ public:
     // Contrat :
     //
 
-    Segment (string nom, Point p1, Point p2);
+    Segment (string nom, Vect p1, Vect p2);
     // Mode d'emploi :
     //
     // Contrat :
@@ -118,8 +118,8 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-    Point p1;
-    Point p2;
+    Vect p1;
+    Vect p2;
 
 //---------------------------------------------------------- Classes amies
 

@@ -11,7 +11,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Figure.h"
-#include "Point.h"
+#include "Vect.h"
 #include <iostream>
 using namespace std;
 
@@ -21,7 +21,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Rectangle>
-//  La classe Rectangle modélise un rectangle avec deux points
+//  La classe Rectangle modélise un rectangle avec deux Vects
 //
 //------------------------------------------------------------------------
 
@@ -43,31 +43,31 @@ public:
     // Contrat :
     //
 
-    Point GetP1() const;
+    Vect GetP1() const;
     // Mode d'emploi :
-    //  Renvoie le point 1 du rectangle
+    //  Renvoie le Vect 1 du rectangle
     // Contrat :
     //
 
-    void SetP1( const Point &p );
+    void SetP1( const Vect &p );
     // Paramètre :
-    //  p : nouveau point
+    //  p : nouveau Vect
     // Mode d'emploi :
-    //  Modifie le point 1 du rectangle
+    //  Modifie le Vect 1 du rectangle
     // Contrat :
     //
 
-    Point GetP2() const;
+    Vect GetP2() const;
     // Mode d'emploi :
-    //  Renvoie le point 1 du rectangle
+    //  Renvoie le Vect 1 du rectangle
     // Contrat :
     //
 
-    void SetP2( const Point &p );
+    void SetP2( const Vect &p );
     // Paramètre : 
-    //  p : nouveau point
+    //  p : nouveau Vect
     // Mode d'emploi :
-    //  Modifie le point 1 du rectangle
+    //  Modifie le Vect 1 du rectangle
     // Contrat :
     //
 
@@ -77,19 +77,19 @@ public:
     // Contrat :
     //
 
-    virtual bool IsIn( const Point &point ) const;
+    virtual bool IsIn( const Vect &Vect ) const;
     // Paramètre :
-    //  point : point a tester
+    //  Vect : Vect a tester
     // Mode d'emploi :
-    //  Renvoie TRUE si le point fait partie du rectangle
+    //  Renvoie TRUE si le Vect fait partie du rectangle
     // Contrat :
     //
 
-    virtual void Move( const Point &point );
+    virtual void Move( const Vect &Vect );
     // Paramètre :
-    //  point : point de deplacement
+    //  Vect : Vect de deplacement
     // Mode d'emploi :
-    //  Modifie les coordonnées du rectangle avec le point de déplacement
+    //  Modifie les coordonnées du rectangle avec le Vect de déplacement
     // Contrat :
     //
 
@@ -120,20 +120,20 @@ public:
     Rectangle ( string nom, int x1, int y1, int x2, int y2 );
     // Paramètres :
     //  nom : nom du rectangle
-    //  x1 : coordonné x du point 1
-    //  y1 : coordonné y du point 1
-    //  x2 : coordonné x du point 2
-    //  y2 : coordonné y du point 2
+    //  x1 : coordonné x du Vect 1
+    //  y1 : coordonné y du Vect 1
+    //  x2 : coordonné x du Vect 2
+    //  y2 : coordonné y du Vect 2
     // Mode d'emploi :
     //  Constructeur de la classe Rectangle
     // Contrat :
     //
 
-    Rectangle ( string nom, Point p1, Point p2 );
+    Rectangle ( string nom, Vect p1, Vect p2 );
     // Paramètres :
     //  nom : nom du rectangle
-    //  p1 : point 1
-    //  p2 : point 2
+    //  p1 : Vect 1
+    //  p2 : Vect 2
     // Mode d'emploi :
     //
     // Contrat :
@@ -158,8 +158,8 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-    Point p1;
-    Point p2;
+    Vect p1;
+    Vect p2;
 
 //---------------------------------------------------------- Classes amies
 

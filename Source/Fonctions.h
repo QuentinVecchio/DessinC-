@@ -11,7 +11,7 @@
 #include <iostream>
 #include <string>
 #include "Dessin.h"
-#include "Point.h"
+#include "Vect.h"
     
 //---------------------------- Fonctions --------------------------------
 int Parseur(const string & donnees, const char separateur, string *tab, const int taille);

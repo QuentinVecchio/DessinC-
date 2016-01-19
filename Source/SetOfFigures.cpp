@@ -100,7 +100,7 @@
 		return p;
 	} //----- Fin de Print
 	
-	void SetOfFigures::Move( const Point &p )
+	void SetOfFigures::Move( const Vect &p )
 	// Algorithme :
 	//
 	{

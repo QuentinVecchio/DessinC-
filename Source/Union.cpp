@@ -39,7 +39,7 @@
 		return str;
 	} //----- Fin de Print
 
-	bool Union::IsIn( const Point &p ) const
+	bool Union::IsIn( const Vect &p ) const
 	// Algorithme :
 	//
 	{

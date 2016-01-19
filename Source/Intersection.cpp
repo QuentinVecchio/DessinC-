@@ -39,7 +39,7 @@
 		return str;
 	} //----- Fin de Print
 
-	bool Intersection::IsIn( const Point &p ) const
+	bool Intersection::IsIn( const Vect &p ) const
 	// Algorithme :
 	//
 	{

@@ -17,4 +17,4 @@ On teste :
 	- La méthode Move
 	- La méthode Undo
 	- La méthode Redo
-Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Point.cpp ../../Source/SetOfFigures.cpp ../../Source/Fonctions.cpp ../../Source/Dessin.cpp -o main
+Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Vect.cpp ../../Source/SetOfFigures.cpp ../../Source/Fonctions.cpp ../../Source/Dessin.cpp -o main

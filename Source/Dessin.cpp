@@ -15,7 +15,7 @@
 #include "Dessin.h"
 #include "Fonctions.h"
 #include "Rectangle.h"
-//#include "Segment.h"
+#include "Segment.h"
 #include "Union.h"
 #include "Intersection.h"
 #include "Fonctions.h"
@@ -45,14 +45,14 @@
 			string n = tabData[1];
 			if(this->GetFigure(n) == NULL)
 			{	if(type == "S" && nElt == 6)
-				{	/*Point p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
-					Point p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+				{	/*Vect p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
+					Vect p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
 					Segment *s = new Segment(n, p1, p2);
 					this->Add(s);*/
 				}
 				else if(type == "R" && nElt == 6)
-				{	Point p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
-					Point p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+				{	Vect p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
+					Vect p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
 					Rectangle *r = new Rectangle(n, p1, p2);
 					this->Add(r);
 				} 
@@ -100,7 +100,7 @@
 		return str;
 	} //----- Fin de Print
 
-	bool Dessin::IsInFigure( const string & name, const Point &p ) const
+	bool Dessin::IsInFigure( const string & name, const Vect &p ) const
 	// Algorithme :
 	//
 	{
@@ -113,7 +113,7 @@
 		}
 	} //----- Fin de IsIn
 
-	bool Dessin::IsIn( const Point &p ) const
+	bool Dessin::IsIn( const Vect &p ) const
 	// Algorithme :
 	//
 	{
@@ -126,7 +126,7 @@
 		return false;
 	} //----- Fin de IsIn
 
-	void Dessin::MoveFigure( const string & name, const Point &p )
+	void Dessin::MoveFigure( const string & name, const Vect &p )
 	// Algorithme :
 	//
 	{
