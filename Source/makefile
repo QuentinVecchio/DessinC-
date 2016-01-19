@@ -8,13 +8,13 @@ CC=g++
 EDL=g++
 EXECNAME=EXEC
 DEBUG=-DMAP
-CPPFLAGS=-g -O2 -Wall
-EDLFLAGS=-g -O2 -Wall
+CPPFLAGS=-g -std=c++11 -Wall
+EDLFLAGS=-g -std=c++11 -Wall
 RM=@rm
 ECHO=@echo
 RMFLAGS=-f
 OUTPUT=-o
-INT= Figure.h Dessin.h Vect.h Rectangle.h SetOfFigures.h Union.h Segment.h
+INT= Figure.h Dessin.h Vect.h Rectangle.h SetOfFigures.h Union.h Segment.h Fonctions.h Intersection.h
 CPP=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 CLEAR=clear

@@ -43,5 +43,6 @@ int main()
 		{	stop = true;
 		}
 	}while(stop == false);
+
 	return 0;
 }
