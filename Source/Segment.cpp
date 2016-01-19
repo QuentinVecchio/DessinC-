@@ -15,7 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Segment.h"
-//#include "Point.h"
+//#include "Vect.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -44,14 +44,14 @@ string Segment:: Print() const
 }
 
 
-bool Segment::IsIn( const Point &p ) const
+bool Segment::IsIn( const Vect &p ) const
 {
-	Point vectorSeg = p1-p2;
-	Point vectorPoint = p1-p;
-	bool isColinear = (vectorSeg.GetX()/vectorPoint.GetX() == vectorSeg.GetY()/vectorPoint.GetY()); // le point est il sur la droit support du segement
+	Vect vectorSeg = p1-p2;
+	Vect vectorVect = p1-p;
+	bool isColinear = (vectorSeg.GetX()/vectorVect.GetX() == vectorSeg.GetY()/vectorVect.GetY()); // le Vect est il sur la droit support du segement
 
-	bool dimantionRight  = (vectorSeg.GetX() < vectorPoint.GetX()& vectorPoint.GetX()<0) // l'absice du est il comprie entre les absices des estrémitéer du segement
-			||      (vectorSeg.GetX() > vectorPoint.GetX()& vectorPoint.GetX()>0);
+	bool dimantionRight  = (vectorSeg.GetX() < vectorVect.GetX()& vectorVect.GetX()<0) // l'absice du est il comprie entre les absices des estrémitéer du segement
+			||      (vectorSeg.GetX() > vectorVect.GetX()& vectorVect.GetX()>0);
 
 
 	return isColinear && dimantionRight;
@@ -59,13 +59,13 @@ bool Segment::IsIn( const Point &p ) const
 }
 
 
-void Segment::Move( const Point &dp )
+void Segment::Move( const Vect &dp )
 {
 	p1=p1+dp;
 	p2= p2+dp;
 }
 // Paramètre
-//	p : point de déplacement
+//	p : Vect de déplacement
 // Mode d'emploi :
 //	Méthode qui fait bouger une figure
 //	Méthode virtuel
@@ -119,8 +119,8 @@ Segment::Segment( string nom, int x1, int y1, int x2, int y2 ):
 
 } //----- Fin de Segment
 
-Segment::Segment( string nom, Point point1 , Point point2):
-		p1(point1), p2(point2),Figure(nom)
+Segment::Segment( string nom, Vect Vect1 , Vect Vect2):
+		p1(Vect1), p2(Vect2),Figure(nom)
 // Algorithme :
 //
 {

@@ -33,13 +33,13 @@
 	//
 	{
 		stringstream ss;
-		ss << "U " << this->GetName() << " " << this->figures.size() << endl;
+		ss << "OR " << this->GetName() << " " << this->figures.size();
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;
 	} //----- Fin de Print
 
-	bool Union::IsIn( const Point &p ) const
+	bool Union::IsIn( const Vect &p ) const
 	// Algorithme :
 	//
 	{

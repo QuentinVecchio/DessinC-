@@ -40,12 +40,12 @@ public:
     // Contrat :
     //
 
-    virtual bool IsIn( const Point &p ) const;
+    virtual bool IsIn( const Vect &p ) const;
     // Paramètre
-    //  p : point pour lequel on veut savoir si il fait partie d'une figure
+    //  p : Vect pour lequel on veut savoir si il fait partie d'une figure
     // Mode d'emploi :
-    //  Méthode qui test si un point appartient à un Intersection
-    //  TRUE si le point appartient, FALSE sinon
+    //  Méthode qui test si un Vect appartient à un Intersection
+    //  TRUE si le Vect appartient, FALSE sinon
     // Contrat :
     //
 

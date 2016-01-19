@@ -33,13 +33,13 @@
 	//
 	{
 		stringstream ss;
-		ss << "I " << this->GetName() << " " << this->figures.size() << endl;
+		ss << "OI " << this->GetName() << " " << this->figures.size();
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;
 	} //----- Fin de Print
 
-	bool Intersection::IsIn( const Point &p ) const
+	bool Intersection::IsIn( const Vect &p ) const
 	// Algorithme :
 	//
 	{

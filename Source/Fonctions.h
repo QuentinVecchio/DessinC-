@@ -10,6 +10,12 @@
 //-----------------------------------------------------------------------
 #include <iostream>
 #include <string>
-
+#include "Dessin.h"
+#include "Vect.h"
+    
 //---------------------------- Fonctions --------------------------------
 int Parseur(const string & donnees, const char separateur, string *tab, const int taille);
+bool interpretreCommande(string commande, Dessin &dessin);
+string getCommande(string commande);
+int getNbParametre(string commande);
+string getParametre(string commande, int n);

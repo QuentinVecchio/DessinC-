@@ -9,4 +9,4 @@ On teste :
 	- La méthode Remove
 	- La méthode Move
 	- La méthode IsIn
-Commande de compilation du main : g++ main.cpp ../../Source/Union.cpp ../../Source/Figure.cpp ../../Source/SetOfFigures.cpp ../../Source/Rectangle.cpp ../../Source/Point.cpp -o main 
+Commande de compilation du main : g++ main.cpp ../../Source/Union.cpp ../../Source/Figure.cpp ../../Source/SetOfFigures.cpp ../../Source/Rectangle.cpp ../../Source/Vect.cpp -o main 

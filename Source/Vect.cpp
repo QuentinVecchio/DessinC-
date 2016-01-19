@@ -1,11 +1,11 @@
 /*************************************************************************
-                          Point -  description
+                          Vect -  description
                              -------------------
     début                : 12/01/16
     copyright            : (C) 2016 par Adrien, Quentin
 *************************************************************************/
 
-//---------- Réalisation de la classe <Point> (fichier Point.cpp) --
+//---------- Réalisation de la classe <Vect> (fichier Vect.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,7 +15,7 @@
 
 
 //------------------------------------------------------ Include personnel
-#include "Point.h"
+#include "Vect.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -28,7 +28,7 @@
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-string Point::Print () const
+string Vect::Print () const
 // Algorithme :
 //
 {
@@ -38,28 +38,28 @@ string Point::Print () const
 	return str;
 } //----- Fin de Print
 
-int Point::GetX () const
+int Vect::GetX () const
 // Algorithme :
 //
 {
 	return x;
 } //----- Fin de GetX
 
-void Point::SetX (const int &x)
+void Vect::SetX (const int &x)
 // Algorithme :
 //
 {
 	this->x = x;
 } //----- Fin de SetX
 
-int Point::GetY () const
+int Vect::GetY () const
 // Algorithme :
 //
 {
 	return y;
 } //----- Fin de GetY
     
-void Point::SetY (const int &y)
+void Vect::SetY (const int &y)
 // Algorithme :
 //
 {
@@ -67,89 +67,89 @@ void Point::SetY (const int &y)
 } //----- Fin de SetY
 
 //------------------------------------------------- Surcharge d'opérateurs
-Point & Point::operator = ( const Point & aPoint )
+Vect & Vect::operator = ( const Vect & aVect )
 // Algorithme :
 //
 {
-	x = aPoint.x;
-	y = aPoint.y;
+	x = aVect.x;
+	y = aVect.y;
 	return *this;
 } //----- Fin de operator =
 
-Point Point::operator + ( const Point & aPoint ) const
+Vect Vect::operator + ( const Vect & aVect ) const
 // Algorithme :
 //
 {
-	Point p (x + aPoint.x,y + aPoint.y);
+	Vect p (x + aVect.x,y + aVect.y);
 	return p;
 } //----- Fin de operator +
 
-Point Point::operator - ( const Point & aPoint ) const
+Vect Vect::operator - ( const Vect & aVect ) const
 // Algorithme :
 //
 {
-	Point p (x - aPoint.x,y - aPoint.y);
+	Vect p (x - aVect.x,y - aVect.y);
 	return p;
 } //----- Fin de operator -
 
 
-Point Point::operator * ( const int lambda ) const
+Vect Vect::operator * ( const int lambda ) const
 // Algorithme :
 //
 {
 	int nx= x*lambda;
 	int ny= y*lambda;
-	Point p (nx,ny);
+	Vect p (nx,ny);
 	return p;
 } //----- Fin de operator *
 
-int Point::operator * ( const Point aPoint ) const
+int Vect::operator * ( const Vect aVect ) const
 // Algorithme :
 //
 {
-	return x*aPoint.x + y *aPoint.y;
+	return x*aVect.x + y *aVect.y;
 } //----- Fin de operator *
 
-ostream& operator << (ostream &out, const Point &unPoint)
+ostream& operator << (ostream &out, const Vect &unVect)
 // Algorithme :
 //
 {
-	out << unPoint.Print();
+	out << unVect.Print();
 	return out;
 }//----- Fin de operator <<
 
 //-------------------------------------------- Constructeurs - destructeur
-Point::Point ( const Point & aPoint )
+Vect::Vect ( const Vect & aVect )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Point>" << endl;
+    cout << "Appel au constructeur de copie de <Vect>" << endl;
 #endif
-    x = aPoint.x;
-    y = aPoint.y;
-} //----- Fin de Point (constructeur de copie)
+    x = aVect.x;
+    y = aVect.y;
+} //----- Fin de Vect (constructeur de copie)
 
 
-Point::Point ( int aX, int aY ):
+Vect::Vect ( int aX, int aY ):
 		x(aX), y(aY)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Point>" << endl;
+    cout << "Appel au constructeur de <Vect>" << endl;
 #endif
-} //----- Fin de Point
+} //----- Fin de Vect
 
 
-Point::~Point ( )
+Vect::~Vect ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Point>" << endl;
+    cout << "Appel au destructeur de <Vect>" << endl;
 #endif
-} //----- Fin de ~Point
+} //----- Fin de ~Vect
 
 
 //------------------------------------------------------------------ PRIVE

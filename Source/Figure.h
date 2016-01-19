@@ -12,7 +12,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <string>
-#include "Point.h"
+#include "Vect.h"
 using namespace std;
 
 
@@ -54,19 +54,19 @@ public:
     // Contrat :
     //
 
-	virtual bool IsIn( const Point &p ) const = 0;
+	virtual bool IsIn( const Vect &p ) const = 0;
 	// Paramètre
-	//	p : point pour lequel on veut savoir si il fait partie de la figure
+	//	p : Vect pour lequel on veut savoir si il fait partie de la figure
 	// Mode d'emploi :
-    //	Méthode qui test si un point appartient à une figure
-	//	TRUE si le point appartient, FALSE sinon
+    //	Méthode qui test si un Vect appartient à une figure
+	//	TRUE si le Vect appartient, FALSE sinon
 	//	Méthode virtuel 
     // Contrat :
     //
 	
-	virtual void Move( const Point &p ) = 0;
+	virtual void Move( const Vect &p ) = 0;
 	// Paramètre
-	//	p : point de déplacement
+	//	p : Vect de déplacement
 	// Mode d'emploi :
     //	Méthode qui fait bouger une figure
 	//	Méthode virtuel 

@@ -6,6 +6,7 @@ On teste :
 	- La surcharge du =
 	- La méthode Print
 	- La méthode Add
+	- La méthode AddByCmd
 	- La méthode Remove
 	- La méthode Move
 	- La méthode Move 2
@@ -16,4 +17,4 @@ On teste :
 	- La méthode Move
 	- La méthode Undo
 	- La méthode Redo
-Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Figure.cpp ../../Source/Point.cpp ../../Source/SetOfFigures.cpp ../../Source/Dessin.cpp -o main
+Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Vect.cpp ../../Source/SetOfFigures.cpp ../../Source/Fonctions.cpp ../../Source/Dessin.cpp -o main

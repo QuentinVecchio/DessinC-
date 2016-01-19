@@ -93,13 +93,14 @@
 		string p = "";
 		for(map<string, Figure *>::const_iterator mi = figures.begin(); mi != figures.end(); ++mi)
 		{	if(mi->second != NULL)
-			{	p += mi->second->Print() + "\n";
+			{	p += "\n";
+				p += mi->second->Print();
 			}		
 		}
 		return p;
 	} //----- Fin de Print
 	
-	void SetOfFigures::Move( const Point &p )
+	void SetOfFigures::Move( const Vect &p )
 	// Algorithme :
 	//
 	{

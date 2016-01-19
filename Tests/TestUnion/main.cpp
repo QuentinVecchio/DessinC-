@@ -3,7 +3,7 @@
 #include <vector>
 #include "../../source/Union.h"
 #include "../../source/Rectangle.h"
-#include "../../source/Point.h"
+#include "../../source/Vect.h"
 
 using namespace std;
 
@@ -27,12 +27,12 @@ int main()
 	cout << u2 << endl;
 	cout << u3 << endl;
 	//	Méthode Move
-	Point p1(2,2);
+	Vect p1(2,2);
 	u1.Move(p1);
 	cout << u1 << endl;
 	//	Méthode IsIn
-	Point p3(3,2);
-	Point p4(15,2);
+	Vect p3(3,2);
+	Vect p4(15,2);
 	cout << u1.IsIn(p3) << endl;
 	cout << u1.IsIn(p4) << endl;
 	//	Méthode Remove

@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "Point.h"
+#include "Vect.h"
 #include "Figure.h"
 
 using namespace std;
@@ -89,12 +89,12 @@ public:
     // Contrat :
     //
 
-	virtual bool IsIn( const Point &p ) const = 0;
+	virtual bool IsIn( const Vect &p ) const = 0;
 	// Paramètre
-	//	p : point pour lequel on veut savoir si il fait partie de la SetOfFigures
+	//	p : Vect pour lequel on veut savoir si il fait partie de la SetOfFigures
 	// Mode d'emploi :
-    //	Méthode qui test si un point appartient à une SetOfFigures
-	//	TRUE si le point appartient, FALSE sinon
+    //	Méthode qui test si un Vect appartient à une SetOfFigures
+	//	TRUE si le Vect appartient, FALSE sinon
 	//	Méthode virtuel 
     // Contrat :
     //
@@ -107,9 +107,9 @@ public:
     // Contrat :
     //
 	
-	void Move( const Point &p );
+	void Move( const Vect &p );
 	// Paramètre
-	//	p : point de déplacement
+	//	p : Vect de déplacement
 	// Mode d'emploi :
     //	Méthode qui fait bouger une SetOfFigures
     // Contrat :

@@ -43,28 +43,28 @@ int Rectangle::GetLength() const
 	return (p1.GetY() - p2.GetY());
 } //----- Fin de GetLength
 
-Point Rectangle::GetP1() const
+Vect Rectangle::GetP1() const
 // Algorithme :
 //
 {
 	return p1;
 } //----- Fin de GetP1
 
-void Rectangle::SetP1( const Point &p )
+void Rectangle::SetP1( const Vect &p )
 // Algorithme :
 //
 {
 	this->p1 = p;
 } //----- Fin de SetP1
 
-Point Rectangle::GetP2() const
+Vect Rectangle::GetP2() const
 // Algorithme :
 //
 {
 	return p2;
 } //----- Fin de GetP2
 
-void Rectangle::SetP2( const Point &p )
+void Rectangle::SetP2( const Vect &p )
 // Algorithme :
 //
 {
@@ -90,19 +90,19 @@ Rectangle* Rectangle::Copy( ) const
 } //----- Fin de Copy
 
 
-bool Rectangle::IsIn( const Point &point ) const
+bool Rectangle::IsIn( const Vect &Vect ) const
 // Algorithme :
 //
 {
-	return (point.GetX() >= p1.GetX() && point.GetX() <= p2.GetX()) && (point.GetY() <= p1.GetY() && point.GetY() >= p2.GetY());
+	return (Vect.GetX() >= p1.GetX() && Vect.GetX() <= p2.GetX()) && (Vect.GetY() <= p1.GetY() && Vect.GetY() >= p2.GetY());
 } //----- Fin de IsIn
 
-void Rectangle::Move( const Point &point )
+void Rectangle::Move( const Vect &Vect )
 // Algorithme :
 //
 {
-	p1 = p1 + point;
-	p2 = p2 + point;
+	p1 = p1 + Vect;
+	p2 = p2 + Vect;
 } //----- Fin de Move
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -110,8 +110,8 @@ Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 // Algorithme :
 //
 {
-	p1 = Point(unRectangle.p1);
-	p2 = Point(unRectangle.p2);
+	p1 = Vect(unRectangle.p1);
+	p2 = Vect(unRectangle.p2);
 	this->SetName(unRectangle.GetName());
 	return *this;
 } //----- Fin de operator =
@@ -137,7 +137,7 @@ Rectangle::Rectangle ( string nom, int x1, int y1, int x2, int y2 ) : Figure(nom
 #endif
 } //----- Fin de Rectangle
 
-Rectangle::Rectangle ( string nom, Point p1, Point p2 ) : Figure(nom), p1(p1), p2(p2)
+Rectangle::Rectangle ( string nom, Vect p1, Vect p2 ) : Figure(nom), p1(p1), p2(p2)
 // Algorithme :
 //
 {
