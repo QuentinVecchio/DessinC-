@@ -59,6 +59,13 @@ public:
     // Contrat :
     //
 
+    Segment* Copy( ) const;
+    // Mode d'emploi :
+    //  Renvoie une nouvelle copie de l'objet
+    //  Méthode virtuel
+    // Contrat :
+    //
+
 	Point GetP1 ();
 	Point GetP2 ();
 	void SetP1 ();

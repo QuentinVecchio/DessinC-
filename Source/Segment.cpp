@@ -40,7 +40,7 @@ string Segment:: Print() const
 	string sp1 = p1.Print();
 	string sp2 = p2.Print();
 
-	return "S"+sp1+sp2;
+	return "S "+sp1+" "+sp2;
 }
 
 
@@ -71,6 +71,14 @@ void Segment::Move( const Point &dp )
 //	Méthode virtuel
 // Contrat :
 //
+
+Segment* Segment::Copy( ) const
+// Algorithme :
+//
+{
+	Segment *s = new Segment(*this);
+	return s;
+} //----- Fin de Copy
 
 
 
