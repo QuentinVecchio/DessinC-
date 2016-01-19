@@ -115,7 +115,7 @@ public:
     // Contrat :
     //
 
-    bool AddByLoad( const string &donnees, SetOfFigures *conteneur, ifstream *fichier);
+    bool AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier);
     // Mode d'emploi :
     //  Ajout d'une nouvelle figure directement depuis un fichier
     // Contrat :

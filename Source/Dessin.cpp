@@ -167,20 +167,19 @@
 	//
 	{
 		string ligne;
-		ifstream *fichier = new ifstream(link.c_str(), ios::in);
-        if(*fichier)
+		fstream fichier(link.c_str());
+        if(fichier)
         {	this->RemoveAll();
-			while(getline(*fichier, ligne))
-		    {	if(this->AddByLoad(ligne, this, fichier) == false)
+			while(getline(fichier, ligne))
+		    {	if(this->AddByLoad(ligne, this, &fichier) == false)
 		    	{	return false;
 		    	}
 		    }
-            fichier->close();
-            delete fichier;
+            fichier.close();
             return true;
         }
 		else
-		{	 delete fichier;
+		{	cout << "# Erreur ouverture fichier " << link << endl;
 			return false;
 		}
 	} //----- Fin de Load
@@ -213,7 +212,7 @@
 		return d;
 	} //----- Fin de Copy
 
-	bool Dessin::AddByLoad( const string &donnees, SetOfFigures *conteneur, ifstream *fichier)
+	bool Dessin::AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier)
 	// Algorithme :
 	//
 	{	
@@ -261,9 +260,9 @@
 							}
 						}
 					}
-					this->Add(u);
+					conteneur->Add(u);
 				}
-				else if(type == "D")
+				else if(type == "D" && nElt == 3)
 				{	SetName(n);
 				}
 				else

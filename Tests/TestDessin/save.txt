@@ -1,0 +1,11 @@
+D dessinTestLoad 3
+OI intersection 2
+R rec1 2 2 0 4
+R rec3 2 2 0 9
+R rec2 2 2 0 4
+OR union 2
+R rec1 2 2 0 4
+OR union1 2
+OR union 1
+R rec8 2 2 0 4
+R rec5 2 2 0 4
