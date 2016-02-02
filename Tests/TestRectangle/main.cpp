@@ -28,8 +28,14 @@ int main()
 	//	méthode IsIn
 	Vect p3(2,2);
 	Vect p4(6,8);
-	cout << r1.IsIn(p3) << endl;
-	cout << r2.IsIn(p4) << endl;
+	if(r1.IsIn(p3))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+	if(r2.IsIn(p4))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
 	//	méthode Move
 	Vect p5(1,1);
 	r3.Move(p5);

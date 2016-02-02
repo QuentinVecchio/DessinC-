@@ -33,12 +33,18 @@ int main()
 	//	Méthode IsIn
 	Vect p3(3,2);
 	Vect p4(15,2);
-	cout << u1.IsIn(p3) << endl;
-	cout << u1.IsIn(p4) << endl;
+	if(u1.IsIn(p3))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+	if(u1.IsIn(p4))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
 	//	Méthode Remove
-	cout << u1.Remove("rectangle2") << endl;
-	cout << u1.Remove("rectangle3") << endl;
-	cout << u1.Remove("rectangle1") << endl;
+	u1.Remove("rectangle2");
+	u1.Remove("rectangle3");
+	u1.Remove("rectangle1");
 	cout << u1 << endl;
 	cout << u2 << endl;
 	cout << u3 << endl;

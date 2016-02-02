@@ -1,7 +1,6 @@
-Ce test permet de tester la classe Sgement; 
-
+Ce test permet de tester la classe Segment 
 	on test :
- o  l'appartenance d'un point au segement,
- o  l'affichage corecte du Segment,
- o  les déplassemnet d'un Sgment,
+	- l'appartenance d'un point au Segment
+ 	- l'affichage corecte du Segment
+ 	- les déplassemnet d'un Segment
 

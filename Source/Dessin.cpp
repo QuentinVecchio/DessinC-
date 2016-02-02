@@ -19,6 +19,7 @@
 #include "Union.h"
 #include "Intersection.h"
 #include "Fonctions.h"
+#include "Command.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -126,7 +127,8 @@
 		for(map<string, Figure *> ::const_iterator mi = this->figures.begin(); mi != this->figures.end(); ++mi)
 		{	if(mi->second != NULL)
 			{	if(mi->second->IsIn(p))
-					return true; 
+				{	return true; 
+				}
 			}		
 		}
 		return false;
@@ -141,6 +143,17 @@
 		{	f->Move(p);
 		}
 	} //----- Fin de MoveFigure
+
+	bool Dessin::Remove(const string &name)
+	{
+		if(this->GetFigure(name) != NULL)
+		{	figures.erase(name);
+			return true; 
+		}
+		else
+		{	return false;
+		}
+	}
 
 	bool Dessin::Save(const string &link)
 	// Algorithme :
@@ -157,8 +170,7 @@
 			return true;
         }
 		else
-		{
-			return false;
+		{	return false;
 		}
 	} //----- Fin de Save
 
@@ -183,26 +195,6 @@
 			return false;
 		}
 	} //----- Fin de Load
-
-	void Dessin::Undo()
-	// Algorithme :
-	//
-	{
-		/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-	} //----- Fin de Undo
-
-	void Dessin::Redo()
-	// Algorithme :
-	//
-	{
-		/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-	} //----- Fin de Redo
 
 	Dessin* Dessin::Copy( ) const
 	// Algorithme :
@@ -274,8 +266,10 @@
 			}
 		}
 		delete[] tabData;
+		cout << "#	Fichier mal formé" << endl;
 		return false;
-	} //----- Fin de Interprete
+	} //----- Fin de AddByLoad
+
 //------------------------------------------------- Surcharge d'opérateurs
 	Dessin & Dessin::operator = ( const Dessin & unDessin )
 	// Algorithme :
@@ -299,6 +293,13 @@
 	#ifdef MAP
 		cout << "Appel au constructeur de copie de <Dessin>" << endl;
 	#endif
+		this->SetName(unDessin.GetName());
+		map<string, Figure *> ens = unDessin.GetFigures();
+		for(map<string, Figure *>::iterator mi = ens.begin(); mi != ens.end(); ++mi)
+		{	if(mi->second != NULL)
+			{	figures[mi->first] = mi->second->Copy();
+			}	
+		}
 	} //----- Fin de Dessin (constructeur de copie)
 
 

@@ -15,6 +15,8 @@
 #include <map>
 #include "Figure.h"
 #include "SetOfFigures.h"
+#include "UndoRedo.h"
+
 using namespace std;
 
 //------------------------------------------------------------- Constantes 
@@ -94,20 +96,6 @@ public:
     // Contrat :
     //
 
-	void Undo();
-	// Mode d'emploi :
-    //	Méthode qui permet de revenir en arrière après une modification
-	//	Limité à 20 fois
-    // Contrat :
-    //
-
-	void Redo();
-	// Mode d'emploi :
-    //	Méthode qui permet de revenir en avant une modification
-	//	Limité à 20 fois
-    // Contrat :
-    //
-
     Dessin* Copy( ) const;
     // Mode d'emploi :
     //  Renvoie une nouvelle copie de l'objet
@@ -118,6 +106,15 @@ public:
     bool AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier);
     // Mode d'emploi :
     //  Ajout d'une nouvelle figure directement depuis un fichier
+    // Contrat :
+    //
+
+    bool Remove(const string &name);
+    // Paramètre
+    //  name : nom de la figure
+    // Mode d'emploi :
+    //  Suppression d'une figure
+    //  True si la suppression s'est faite, False sinon
     // Contrat :
     //
 

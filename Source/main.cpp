@@ -15,7 +15,7 @@
 #include <cstring>
 #include "Dessin.h"
 #include "Fonctions.h"
-
+#include "UndoRedo.h"
 using namespace std;
 //------------------------------------------------------ Include personnel
 
@@ -33,11 +33,12 @@ int main()
 {
 	string commande = "";
 	Dessin d("Dessin");
+	UndoRedo pile;
 	bool stop = false;
 	do
 	{	cin.tie(0);
 		if(getline(cin,commande))
-		{	stop = interpretreCommande(commande, d);
+		{	stop = interpretreCommande(commande, d, pile);
 		}
 		else
 		{	stop = true;

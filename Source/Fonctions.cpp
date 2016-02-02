@@ -5,7 +5,8 @@
     copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio	
 *************************************************************************/
 #include "Fonctions.h"
-
+#include "Command.h"
+    
 //---------------------------- Fonctions --------------------------------
 int Parseur(const string & donnees, const char separateur, string *tab, const int taille)
 {
@@ -33,14 +34,16 @@ int Parseur(const string & donnees, const char separateur, string *tab, const in
 	return p;
 }
 
-bool interpretreCommande(string commande, Dessin &dessin) 
+bool interpretreCommande(string commande, Dessin &dessin, UndoRedo &pile) 
 	{
 		string nomCommande = getCommande(commande);
 		int nParam = getNbParametre(commande);
 		if(nomCommande == "ADD")
 		{	dessin.AddByCmd(commande);
+			Command c("DELETE " + getParametre(commande,1), commande);
+			pile.AddUndo(c);
 		}
-		else if(nomCommande == "MOVE" && nParam == 3)
+		else if(nomCommande == "HIT" && nParam == 3)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
 			Vect p(x,y);
@@ -54,6 +57,12 @@ bool interpretreCommande(string commande, Dessin &dessin)
 			for(int i=1;i<nParam;i++)
 			{
 				name = getParametre(commande,i);
+				Figure *f = dessin.GetFigure(name);
+				if(f != NULL)
+				{
+					Command c("ADD " + f->Print(),commande);
+					pile.AddUndo(c);
+				}
 				dessin.Remove(name);
 			}
 		}
@@ -61,22 +70,35 @@ bool interpretreCommande(string commande, Dessin &dessin)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
 			Vect p(x,y);
+			Figure *f = dessin.GetFigure(getParametre(commande,1));
+			if(f != NULL)
+			{
+				Vect p2(-x,-y);
+				Command c("MOVE " + f->GetName() + " " + p2.Print(),commande);
+				pile.AddUndo(c);
+			}
 			dessin.MoveFigure(getParametre(commande,1),p);
 		}
 		else if(nomCommande == "REDO" && nParam == 1)
-		{	dessin.Redo();
+		{	
 		}
 		else if(nomCommande == "UNDO" && nParam == 1)
-		{	dessin.Undo();
+		{	
 		}
 		else if(nomCommande == "SAVE" && nParam == 1)
 		{	dessin.Save(getParametre(commande,1));
 		}
 		else if(nomCommande == "LOAD" && nParam == 1)
-		{	dessin.Load(getParametre(commande,1));
+		{	dessin.Save("temps.txt");
+			Command c("LOAD temps.txt",commande);
+			pile.AddUndo(c);
+			dessin.Load(getParametre(commande,1));
 		}
 		else if(nomCommande == "CLEAR")
-		{	dessin.RemoveAll();
+		{	dessin.Save("temps.txt");
+			Command c("LOAD temps.txt",commande);
+			pile.AddUndo(c);
+			dessin.RemoveAll();
 		}
 		else if(nomCommande == "EXIT")
 		{	return true;

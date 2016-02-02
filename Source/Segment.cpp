@@ -27,19 +27,13 @@
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Segment::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
 
 string Segment:: Print() const
 {
 	string sp1 = p1.Print();
 	string sp2 = p2.Print();
 
-	return "S "+sp1+" "+sp2;
+	return "S " + this->GetName() + " " + sp1 + " " + sp2;
 }
 
 
@@ -63,13 +57,6 @@ void Segment::Move( const Vect &dp )
 	p1=p1+dp;
 	p2= p2+dp;
 }
-// Paramètre
-//	p : Vect de déplacement
-// Mode d'emploi :
-//	Méthode qui fait bouger une figure
-//	Méthode virtuel
-// Contrat :
-//
 
 Segment* Segment::Copy( ) const
 // Algorithme :

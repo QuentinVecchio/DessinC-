@@ -1,0 +1,1 @@
+g++ main.cpp ../../Source/UndoRedo.cpp ../../Source/Command.cpp -o main && ./main

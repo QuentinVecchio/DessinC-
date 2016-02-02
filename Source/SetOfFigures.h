@@ -60,12 +60,13 @@ public:
     // Contrat :
     //
 
-    bool Remove(const string &name);
+    virtual bool Remove(const string &name);
     // Paramètre
     //  name : nom de la figure
     // Mode d'emploi :
     //  Suppression d'une figure
     //  True si la suppression s'est faite, False sinon
+    //  Méthode virtuel
     // Contrat :
     //
 

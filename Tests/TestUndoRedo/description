@@ -1,0 +1,10 @@
+Ce test permet de tester la classe UndoRedo
+On teste :
+	- Le constructeur
+	- Le constructeur par copie
+	- La surcharge du =
+	- La méthode AddUndo
+	- La méthode AddRedo
+	- La méthode Undo
+	- La méthode Redo
+Commande de compilation du main : g++ main.cpp ../../Source/UndoRedo.cpp ../../Source/Command.cpp -o main
