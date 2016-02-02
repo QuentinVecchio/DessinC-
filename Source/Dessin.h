@@ -114,6 +114,13 @@ public:
     //  Méthode virtuel 
     // Contrat :
     //
+
+    bool AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier);
+    // Mode d'emploi :
+    //  Ajout d'une nouvelle figure directement depuis un fichier
+    // Contrat :
+    //
+
 //------------------------------------------------- Surcharge d'opérateurs
 	Dessin & operator = ( const Dessin & unDessin );
     // Mode d'emploi :

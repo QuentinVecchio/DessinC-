@@ -69,7 +69,10 @@ int main()
 	d1.AddByCmd(cmd);
 	cout << d1 << endl;
 	//	Méthode Save
+	d1.Save("test.txt");
 	//	Méthode Load
+	d1.Load("save.txt");
+	cout << d1 << endl;
 	//	Méthode Undo
 	//	Méthode Redo
 	return 0;

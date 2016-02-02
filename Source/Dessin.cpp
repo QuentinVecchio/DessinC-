@@ -45,14 +45,14 @@
 			string n = tabData[1];
 			if(this->GetFigure(n) == NULL)
 			{	if(type == "S" && nElt == 6)
-				{	/*Vect p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
-					Vect p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
 					Segment *s = new Segment(n, p1, p2);
-					this->Add(s);*/
+					this->Add(s);
 				}
 				else if(type == "R" && nElt == 6)
-				{	Vect p1(atoi(tabData[2].c_str()), atoi(tabData[3].c_str()));
-					Vect p2(atoi(tabData[4].c_str()), atoi(tabData[5].c_str()));
+				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
 					Rectangle *r = new Rectangle(n, p1, p2);
 					this->Add(r);
 				} 
@@ -80,12 +80,18 @@
 					}
 					this->Add(u);
 				}
-				else
-				{	return false;
+				else if(type == "D")
+				{	SetName(n);
 				}
+				else
+				{	delete[] tabData;
+					return false;
+				}
+				delete[] tabData;
 				return true;
 			}
 		}
+		delete[] tabData;
 		return false;
 	} //----- Fin de AddFigure
 
@@ -142,10 +148,10 @@
 	{
 		ofstream fichier(link.c_str(), ios::out);
         if(fichier)
-        {
+        {	fichier << "D " << GetName() << " " << this->figures.size() << endl;
 			for(map<string, Figure *> ::const_iterator mi = this->figures.begin(); mi != this->figures.end(); ++mi)
 			{	if(mi->second != NULL)
-				{	fichier << mi->second << endl;
+				{	fichier << *(mi->second) << endl;
 				}		
 			}
 			return true;
@@ -160,19 +166,20 @@
 	// Algorithme :
 	//
 	{
-		ifstream fichier(link.c_str(), ios::in);
+		string ligne;
+		fstream fichier(link.c_str());
         if(fichier)
-        {
-			this->RemoveAll();
-			string ligne;
+        {	this->RemoveAll();
 			while(getline(fichier, ligne))
-		    {	this->AddByCmd(ligne);
+		    {	if(this->AddByLoad(ligne, this, &fichier) == false)
+		    	{	return false;
+		    	}
 		    }
             fichier.close();
             return true;
         }
 		else
-		{
+		{	cout << "# Erreur ouverture fichier " << link << endl;
 			return false;
 		}
 	} //----- Fin de Load
@@ -205,6 +212,70 @@
 		return d;
 	} //----- Fin de Copy
 
+	bool Dessin::AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier)
+	// Algorithme :
+	//
+	{	
+		string *tabData = new string[100];
+		int nElt = Parseur(donnees, ' ', tabData, 100);
+		if(nElt >= 3)
+		{	string type = tabData[0];
+			string n = tabData[1];
+			if(conteneur->GetFigure(n) == NULL)
+			{	if(type == "S" && nElt == 6)
+				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+					Segment *s = new Segment(n, p1, p2);
+					conteneur->Add(s);
+				}
+				else if(type == "R" && nElt == 6)
+				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+					Rectangle *r = new Rectangle(n, p1, p2);
+					conteneur->Add(r);
+				} 
+				else if(type == "PC")
+				{
+
+				}
+				else if(type == "OR" || type == "OI")
+				{	SetOfFigures *u = NULL;
+					if(type == "OR")
+					{	u = new Union(n);
+					}
+					else
+					{	u = new Intersection(n);
+					}
+					int l = stoi(tabData[2].c_str());
+					for(int i=0;i<l;i++)
+					{	string cmd;
+						if(getline(*fichier, cmd) == false)
+						{	delete[] tabData;
+							return false;
+						}
+						else
+						{	if(this->AddByLoad(cmd, u,fichier) == false)
+							{	delete[] tabData;
+								return false;
+							}
+						}
+					}
+					conteneur->Add(u);
+				}
+				else if(type == "D" && nElt == 3)
+				{	SetName(n);
+				}
+				else
+				{	delete[] tabData;
+					return false;
+				}
+				delete[] tabData;
+				return true;
+			}
+		}
+		delete[] tabData;
+		return false;
+	} //----- Fin de Interprete
 //------------------------------------------------- Surcharge d'opérateurs
 	Dessin & Dessin::operator = ( const Dessin & unDessin )
 	// Algorithme :
