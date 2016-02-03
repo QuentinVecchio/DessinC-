@@ -34,6 +34,12 @@ public:
     // Contrat :
     //
 
+    static int ProdVect(const Vect & V1 , Vect & V2);
+    // Mode d'emploi :
+    // retourne le produit vectoriel de V1 V2;
+    // Contrat :
+    //
+
     int GetX () const;
     // Mode d'emploi :
     //  

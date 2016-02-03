@@ -38,6 +38,13 @@ string Vect::Print () const
 	return str;
 } //----- Fin de Print
 
+int Vect::ProdVect(const Vect & V1 , Vect & V2)
+// Algorithme :
+//
+{
+	return V1.x* V2.y - V1.y* V2.x;
+}
+
 int Vect::GetX () const
 // Algorithme :
 //
