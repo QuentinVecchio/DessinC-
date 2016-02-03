@@ -3,4 +3,4 @@ Ce test permet de tester la classe Segment
 	- l'appartenance d'un point au Segment
  	- l'affichage corecte du Segment
  	- les déplassemnet d'un Segment
-
+Commande de compilation du main : g++ main.cpp ../../Source/Segment.cpp ../../Source/Vect.cpp -o main

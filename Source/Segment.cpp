@@ -29,16 +29,20 @@
 
 //----------------------------------------------------- Méthodes publiques
 
-string Segment:: Print() const
+string Segment::Print() const
+// Algorithme :
+//
 {
 	string sp1 = p1.Print();
 	string sp2 = p2.Print();
 
 	return "S " + this->GetName() + " " + sp1 + " " + sp2;
-}
+} //----- Fin de operator Print
 
 
 bool Segment::IsIn( const Vect &p ) const
+// Algorithme :
+//
 {
 	Vect vectorSeg = p1-p2;
 	Vect vectorVect = p1-p;
@@ -50,14 +54,15 @@ bool Segment::IsIn( const Vect &p ) const
 
 	return isColinear && dimantionRight;
 
-}
-
+} //----- Fin de operator IsIn
 
 void Segment::Move( const Vect &dp )
+// Algorithme :
+//
 {
 	p1=p1+dp;
 	p2= p2+dp;
-}
+} //----- Fin de operator Move
 
 Segment* Segment::Copy( ) const
 // Algorithme :
@@ -67,7 +72,40 @@ Segment* Segment::Copy( ) const
 	return s;
 } //----- Fin de Copy
 
+Vect Segment::GetP1( ) const
+// Algorithme :
+//
+{
+	return p1;
+} //----- Fin de GetP1
 
+Vect Segment::GetP2( ) const
+// Algorithme :
+//
+{
+	return p2;
+} //----- Fin de GetP2
+
+void Segment::SetP1(  const Vect &v )
+// Algorithme :
+//
+{
+	p1 = v;
+} //----- Fin de SetP1
+
+void Segment::SetP2( const Vect &v )
+// Algorithme :
+//
+{
+	p2 = v;
+} //----- Fin de SetP2
+
+float Segment::GetLength( ) const
+// Algorithme :
+//
+{
+	return 0;
+} //----- Fin de GetLength
 
 //------------------------------------------------- Surcharge d'opérateurs
 Segment & Segment::operator = ( const Segment & aSegment )
@@ -96,7 +134,7 @@ Segment::Segment ( const Segment & aSegment):
 
 
 Segment::Segment( string nom, int x1, int y1, int x2, int y2 ):
-		p1(x1,x2),p2(x1,x2),Figure(nom)
+		Figure(nom),p1(x1,x2),p2(x1,x2)
 // Algorithme :
 //
 {
@@ -107,7 +145,7 @@ Segment::Segment( string nom, int x1, int y1, int x2, int y2 ):
 } //----- Fin de Segment
 
 Segment::Segment( string nom, Vect Vect1 , Vect Vect2):
-		p1(Vect1), p2(Vect2),Figure(nom)
+		Figure(nom),p1(Vect1), p2(Vect2)
 // Algorithme :
 //
 {

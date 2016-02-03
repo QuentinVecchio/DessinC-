@@ -71,7 +71,7 @@ public:
     // Contrat :
     //
 
-	void MoveFigure( const string & name, const Vect &p);
+	bool MoveFigure( const string & name, const Vect &p);
 	// Paramètre
 	//	name : nom de la figure que l'on veut déplacer
 	//	p : Vect de déplacement
@@ -100,12 +100,6 @@ public:
     // Mode d'emploi :
     //  Renvoie une nouvelle copie de l'objet
     //  Méthode virtuel 
-    // Contrat :
-    //
-
-    bool AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier);
-    // Mode d'emploi :
-    //  Ajout d'une nouvelle figure directement depuis un fichier
     // Contrat :
     //
 
@@ -153,6 +147,11 @@ protected:
 
 private:
 //------------------------------------------------------- Méthodes privées
+    bool AddByLoad( const string &donnees, SetOfFigures *conteneur, fstream *fichier);
+    // Mode d'emploi :
+    //  Ajout d'une nouvelle figure directement depuis un fichier
+    // Contrat :
+    //
 
 protected:
 //----------------------------------------------------- Attributs protégés

@@ -1,0 +1,9 @@
+Ce test permet de tester toutes les classes du projet
+Volume :
+	- 3 données
+On teste :
+	- l'ajout simple d'une figure
+	- la creation d'une union
+	- la suppresion
+	- l'existance d'un point
+Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Segment.cpp ../../Source/Vect.cpp ../../Source/SetOfFigures.cpp ../../Source/Dessin.cpp ../../Source/Fonctions.cpp ../../Source/Command.cpp ../../Source/UndoRedo.cpp -g -std=c++11 -Wall -O3 -o main -o main

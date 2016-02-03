@@ -66,11 +66,39 @@ public:
     // Contrat :
     //
 
-	Vect GetP1 ();
-	Vect GetP2 ();
-	void SetP1 ();
-	void SetP2 ();
+	Vect GetP1 ( ) const;
+    // Mode d'emploi :
+    //  Renvoie le point p1 du segment
+    // Contrat :
+    //
 
+	Vect GetP2 ( ) const;
+    // Mode d'emploi :
+    //  Renvoie le point p1 du segment
+    // Contrat :
+    //
+
+	void SetP1 ( const Vect &v );
+    // Paramètre
+    //  v : nouveau point
+    // Mode d'emploi :
+    //  Méthode qui modifie le point 1
+    // Contrat :
+    //
+
+	void SetP2 ( const Vect &v );
+    // Paramètre
+    //  v : nouveau point
+    // Mode d'emploi :
+    //  Méthode qui modifie le point 2
+    // Contrat :
+    //
+
+    float GetLength() const;
+    // Mode d'emploi :
+    //  Méthode qui renvoie la taille d'un segment
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Segment & operator = ( const Segment & unSegment );

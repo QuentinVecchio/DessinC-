@@ -58,8 +58,15 @@
 					this->Add(r);
 				} 
 				else if(type == "PC")
-				{
-
+				{	/*Polygone *p = new Polygone(n);
+					for(int i=1;i<nElt;i+=2) {
+						Vect point(stoi(tabData[i].c_str()), stoi(tabData[i+1].c_str()));
+						p->Add(p);
+					}
+					if(p->IsConnexe())
+						this->Add(p);
+					else
+						return false;*/
 				}
 				else if(type == "OR")
 				{	Union *u = new Union(n);
@@ -134,14 +141,16 @@
 		return false;
 	} //----- Fin de IsIn
 
-	void Dessin::MoveFigure( const string & name, const Vect &p )
+	bool Dessin::MoveFigure( const string & name, const Vect &p )
 	// Algorithme :
 	//
 	{
 		Figure *f = this->GetFigure(name);
 		if(f != NULL)
 		{	f->Move(p);
+			return true;
 		}
+		return false;
 	} //----- Fin de MoveFigure
 
 	bool Dessin::Remove(const string &name)
@@ -241,7 +250,7 @@
 					int l = stoi(tabData[2].c_str());
 					for(int i=0;i<l;i++)
 					{	string cmd;
-						if(getline(*fichier, cmd) == false)
+						if(!getline(*fichier, cmd))
 						{	delete[] tabData;
 							return false;
 						}

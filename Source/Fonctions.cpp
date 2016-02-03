@@ -34,20 +34,20 @@ int Parseur(const string & donnees, const char separateur, string *tab, const in
 	return p;
 }
 
-bool interpretreCommande(string commande, Dessin &dessin, UndoRedo &pile) 
-	{
+bool interpretreCommande(string commande, Dessin &dessin, UndoRedo *pile) 
+{
 		string nomCommande = getCommande(commande);
 		int nParam = getNbParametre(commande);
-		if(nomCommande == "ADD")
-		{	dessin.AddByCmd(commande);
-			Command c("DELETE " + getParametre(commande,1), commande);
-			pile.AddUndo(c);
-		}
-		else if(nomCommande == "HIT" && nParam == 3)
+		if(nomCommande == "HIT" && nParam == 4)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
 			Vect p(x,y);
-			dessin.IsInFigure(getParametre(commande,1),p);
+			if(dessin.IsInFigure(getParametre(commande,1),p))
+			{	cout << "YES" << endl;
+			}
+			else
+			{	cout << "NO" << endl;
+			}
 		}
 		else if(nomCommande == "LIST")
 		{	cout << dessin << endl;
@@ -61,12 +61,17 @@ bool interpretreCommande(string commande, Dessin &dessin, UndoRedo &pile)
 				if(f != NULL)
 				{
 					Command c("ADD " + f->Print(),commande);
-					pile.AddUndo(c);
+					pile->AddUndo(c);
 				}
-				dessin.Remove(name);
+				if(dessin.Remove(name))
+				{	cout << "OK" << endl;
+				}
+				else
+				{	cout << "ERR" << endl;
+				}
 			}
 		}
-		else if(nomCommande == "MOVE" && nParam == 3)
+		else if(nomCommande == "MOVE" && nParam == 4)
 		{	int x = atoi(getParametre(commande,2).c_str());
 			int y = atoi(getParametre(commande,3).c_str());
 			Vect p(x,y);
@@ -75,33 +80,60 @@ bool interpretreCommande(string commande, Dessin &dessin, UndoRedo &pile)
 			{
 				Vect p2(-x,-y);
 				Command c("MOVE " + f->GetName() + " " + p2.Print(),commande);
-				pile.AddUndo(c);
+				pile->AddUndo(c);
 			}
-			dessin.MoveFigure(getParametre(commande,1),p);
+			if(dessin.MoveFigure(getParametre(commande,1),p))
+			{	cout << "OK" << endl;
+			}
+			else
+			{	cout << "ERR" << endl;
+			}
 		}
 		else if(nomCommande == "REDO" && nParam == 1)
-		{	
+		{	string cmd = pile->Redo();
+			return interpretreCommande(cmd, dessin, pile);
 		}
 		else if(nomCommande == "UNDO" && nParam == 1)
-		{	
+		{	string cmd = pile->Undo();
+			return interpretreCommande(cmd, dessin, pile);
 		}
-		else if(nomCommande == "SAVE" && nParam == 1)
-		{	dessin.Save(getParametre(commande,1));
+		else if(nomCommande == "SAVE" && nParam == 2)
+		{	if(dessin.Save(getParametre(commande,1)))
+			{	cout << "OK" << endl;
+			}
+			else
+			{	cout << "ERR" << endl;
+			}
 		}
-		else if(nomCommande == "LOAD" && nParam == 1)
+		else if(nomCommande == "LOAD" && nParam == 2)
 		{	dessin.Save("temps.txt");
 			Command c("LOAD temps.txt",commande);
-			pile.AddUndo(c);
-			dessin.Load(getParametre(commande,1));
+			pile->AddUndo(c);
+			if(dessin.Load(getParametre(commande,1)))
+			{	cout << "OK" << endl;
+			}
+			else
+			{	cout << "ERR" << endl;
+			}
 		}
 		else if(nomCommande == "CLEAR")
 		{	dessin.Save("temps.txt");
 			Command c("LOAD temps.txt",commande);
-			pile.AddUndo(c);
-			dessin.RemoveAll();
+			pile->AddUndo(c);
+			cout << "OK" << endl;
 		}
 		else if(nomCommande == "EXIT")
 		{	return true;
+		}
+		else
+		{	if(dessin.AddByCmd(commande))
+			{	Command c("DELETE " + getParametre(commande,1), commande);
+				pile->AddUndo(c);
+				cout << "OK" << endl;
+			}
+			else
+			{	cout << "ERR" << endl;
+			}
 		}
 		return false;
 	}
@@ -125,6 +157,7 @@ int getNbParametre(string commande)
 	{	if(commande[i] == ' ')
 			nbParametre++;
 	}
+	nbParametre++;
 	return nbParametre;
 }
 
