@@ -33,7 +33,7 @@
 	//
 	{
 		stringstream ss;
-		ss << "OR " << this->GetName() << " " << this->figures.size();
+		ss << "OR " << this->GetName() << " " << this->figures.size() << "\n";
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;

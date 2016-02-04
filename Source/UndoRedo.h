@@ -14,6 +14,8 @@
 #include <string>
 #include <stack>
 #include "Command.h"
+#include "Figure.h"
+#include <map>
 using namespace std;
 
 //------------------------------------------------------------- Constantes 
@@ -60,6 +62,18 @@ public:
     // Contrat :
     //
 
+    unsigned int GetLimit() const;
+    // Mode d'emploi :
+    //  Méthode qui donne la limite dans la pile
+    // Contrat :
+    //
+
+    void SetLimit(  const unsigned int limit );
+    // Mode d'emploi :
+    //  Méthode qui modifie la limite de la pile
+    // Contrat :
+    //
+
     UndoRedo* Copy( ) const;
     // Mode d'emploi :
     //  Renvoie une nouvelle copie de l'objet
@@ -83,7 +97,7 @@ public:
     // Contrat :
     //
 
-    UndoRedo ( );
+    UndoRedo ( const unsigned int limit );
     // Mode d'emploi :
     //	Constructeur de la classe UndoRedo
     // Contrat :
@@ -110,7 +124,7 @@ private:
 //------------------------------------------------------- Attributs privés
     stack<Command> undo;
     stack<Command> redo;
-
+    unsigned int limit;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées

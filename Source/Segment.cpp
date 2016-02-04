@@ -1,8 +1,8 @@
 /*************************************************************************
                            Segment  -  description
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+    début                : 12/01/2016
+    copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio	
 *************************************************************************/
 
 //---------- Réalisation de la classe <Segment> (fichier Segment.cpp) --
@@ -44,15 +44,20 @@ bool Segment::IsIn( const Vect &p ) const
 // Algorithme :
 //
 {
-	Vect vectorSeg = p1-p2;
-	Vect vectorVect = p1-p;
-	bool isColinear = (vectorSeg.GetX()/vectorVect.GetX() == vectorSeg.GetY()/vectorVect.GetY()); // le Vect est il sur la droit support du segement
+	if(p1.GetX() == p2.GetX() && p1.GetY() == p2.GetY())
+	{
+		return (p1.GetX() == p.GetX() && p1.GetY() == p.GetY());
+	}
+	else
+	{	Vect vectorSeg = p1-p2;
+		Vect vectorVect = p1-p;
+		bool isColinear = (vectorSeg.GetX()/vectorVect.GetX() == vectorSeg.GetY()/vectorVect.GetY()); // le Vect est il sur la droit support du segement
 
-	bool dimantionRight  = (vectorSeg.GetX() < vectorVect.GetX()& vectorVect.GetX()<0) // l'absice du est il comprie entre les absices des estrémitéer du segement
-			||      (vectorSeg.GetX() > vectorVect.GetX()& vectorVect.GetX()>0);
+		bool dimantionRight  = ((vectorSeg.GetX() < vectorVect.GetX()) && (vectorVect.GetX()<0)) // l'absice du est il comprie entre les absices des estrémitéer du segement
+				||      ((vectorSeg.GetX() > vectorVect.GetX()) && (vectorVect.GetX()>0));
 
-
-	return isColinear && dimantionRight;
+		return isColinear && dimantionRight;
+	}
 
 } //----- Fin de operator IsIn
 
@@ -134,7 +139,7 @@ Segment::Segment ( const Segment & aSegment):
 
 
 Segment::Segment( string nom, int x1, int y1, int x2, int y2 ):
-		Figure(nom),p1(x1,x2),p2(x1,x2)
+		Figure(nom),p1(x1,y1),p2(x2,y2)
 // Algorithme :
 //
 {

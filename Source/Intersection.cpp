@@ -33,7 +33,7 @@
 	//
 	{
 		stringstream ss;
-		ss << "OI " << this->GetName() << " " << this->figures.size();
+		ss << "OI " << this->GetName() << " " << this->figures.size() << "\n";
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;

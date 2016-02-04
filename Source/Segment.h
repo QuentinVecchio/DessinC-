@@ -1,8 +1,8 @@
 /*************************************************************************
                            Segment  -  description
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+    début                : 12/01/2016
+    copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio 
 *************************************************************************/
 
 //---------- Interface de la classe <Segment> (fichier Segment.h) ------

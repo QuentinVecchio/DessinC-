@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include <map>
 #include "../../Source/Dessin.h"
 #include "../../Source/Fonctions.h"
 #include "../../Source/UndoRedo.h"
@@ -32,18 +33,26 @@ using namespace std;
 int main()
 {
 	string commande = "";
-	Dessin d("Dessin");
-	UndoRedo *pile = new UndoRedo();
+	Dessin *d = new Dessin("Dessin");
+	UndoRedo *pile = new UndoRedo(20);
+	map<string,Figure*> *exclu = new map<string,Figure*>();
 	bool stop = false;
 	do
 	{	cin.tie(0);
 		if(getline(cin,commande))
-		{	stop = interpretreCommande(commande, d, pile);
+		{	stop = interpretreCommande(commande, d, pile, exclu, false);
 		}
 		else
 		{	stop = true;
 		}
 	}while(stop == false);
+	for(map<string, Figure *>::iterator mi = exclu->begin(); mi != exclu->end(); ++mi)
+	{	if(mi->second != NULL)
+		{	delete mi->second;	
+		}		
+	}
+	delete exclu;
 	delete pile;
+	delete d;
 	return 0;
 }

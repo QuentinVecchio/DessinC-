@@ -2,6 +2,12 @@ Ce test permet de tester la classe Polygone
 On teste :
 	- Le constructeur
 	- La surcharge du =
+	- La surcharge du <<
 	- Le constructeur par copie
-	
-Commande de compilation du main : g++ main.cpp ../../Source/Polygone.cpp ../../Source/Vect.cpp -o main
+	- L'ajout d'un point
+	- La méthode GetNbPoints()
+	- La méthode Move
+	- La méthode IsIn
+	- La méthode IsConvexe
+
+Commande de compilation du main : g++ main.cpp ../../Source/Polygon.cpp ../../Source/Figure.cpp ../../Source/Vect.cpp -o main

@@ -4,6 +4,8 @@
 #include "../../source/Dessin.h"
 #include "../../source/Rectangle.h"
 #include "../../source/Vect.h"
+#include "../../source/Segment.h"
+#include "../../source/Polygon.h"
 
 using namespace std;
 
@@ -22,6 +24,15 @@ int main()
 	//	Méthode Add
 	Rectangle *r2 = new Rectangle("rectangle2", 0, 5, 5, 0);
 	d1.Add(r2);
+	Segment *s1 = new Segment("segment1",5,5,0,5);
+	d1.Add(s1);
+	Polygon *p = new Polygon("polygon1");
+	p->Add(Vect(-1,5));
+	p->Add(Vect(-2,2));
+	p->Add(Vect(-2,-2));
+	p->Add(Vect(1,-3));
+	p->Add(Vect(3,1));
+	d1.Add(p);
 	//	Surcharge du << et Print
 	cout << d1 << endl;
 	cout << d2 << endl;
@@ -48,32 +59,21 @@ int main()
 	cout << d1.Remove("rectangle2") << endl;
 	cout << d1.Remove("rectangle3") << endl;
 	cout << d1.Remove("rectangle1") << endl;
+	d1.RemoveAll();
 	cout << d1 << endl;
 	cout << d2 << endl;
 	cout << d3 << endl;
 	//	Méthode AddByCmd
 	string cmd;
-	//getline(cin,cmd); // Test Segment
-	//d2.AddByCmd(cmd);
-	getline(cin,cmd); // Test Rectangle
-	d1.AddByCmd(cmd);
-	getline(cin,cmd); // Test Rectangle
-	d1.AddByCmd(cmd);
-	getline(cin,cmd); // Test Rectangle
-	d1.AddByCmd(cmd);
-	//getline(cin,cmd); // Test Polygone
-	//d2.AddByCmd(cmd);
-	getline(cin,cmd); // Test Union
-	d1.AddByCmd(cmd);
-	getline(cin,cmd); // Test Intersection
-	d1.AddByCmd(cmd);
+	for(int i=0;i<7;i++)
+	{	getline(cin,cmd);
+		d1.AddByCmd(cmd);
+	}
 	cout << d1 << endl;
 	//	Méthode Save
 	d1.Save("test.txt");
 	//	Méthode Load
-	d1.Load("save.txt");
+	d1.Load("TestDessin/save.txt");
 	cout << d1 << endl;
-	//	Méthode Undo
-	//	Méthode Redo
 	return 0;
 }

@@ -1,10 +1,10 @@
-D dessin1 5
-OI intersection 2
-R rec1 2 2 0 4
+D dessin1 7
+OI intersection 2R rec1 2 2 0 4
 R rec3 2 2 0 9
+PC pol1 -1 5 -2 2 -2 -2 1 -3 3 1
 R rec1 2 2 0 4
 R rec2 2 2 0 7
 R rec3 2 2 0 9
-OR union 2
-R rec1 2 2 0 4
+S seg1 5 5 5 0
+OR union 2R rec1 2 2 0 4
 R rec2 2 2 0 7

@@ -58,7 +58,8 @@
 	//
 	{
 		if(this->GetFigure(n) != NULL)
-		{	figures.erase(n);
+		{	delete figures[n];
+			figures.erase(n);
 			return true; 
 		}
 		else
@@ -70,6 +71,11 @@
 	// Algorithme :
 	//
 	{
+		for(map<string, Figure *>::iterator mi = figures.begin(); mi != figures.end(); ++mi)
+		{	if(mi->second != NULL)
+			{	delete mi->second;	
+			}		
+		}
 		figures.clear();
 	} //----- Fin de RemoveAll
 
@@ -91,11 +97,15 @@
 	//
 	{
 		string p = "";
+		int i=0, l = figures.size();
 		for(map<string, Figure *>::const_iterator mi = figures.begin(); mi != figures.end(); ++mi)
 		{	if(mi->second != NULL)
-			{	p += "\n";
-				p += mi->second->Print();
-			}		
+			{	p += mi->second->Print();
+				if(i < (l-1))
+				{	p += "\n";
+				}
+			}
+			i++;		
 		}
 		return p;
 	} //----- Fin de Print

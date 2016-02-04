@@ -15,6 +15,4 @@ On teste :
 	- La méthode Save
 	- La méthode Load
 	- La méthode Move
-	- La méthode Undo
-	- La méthode Redo
-Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Segment.cpp ../../Source/Vect.cpp ../../Source/SetOfFigures.cpp ../../Source/Dessin.cpp ../../Source/Fonctions.cpp ../../Source/Command.cpp ../../Source/UndoRedo.cpp -o main
+Commande de compilation du main : g++ main.cpp ../../Source/Rectangle.cpp ../../Source/Union.cpp ../../Source/Intersection.cpp ../../Source/Figure.cpp ../../Source/Segment.cpp ../../Source/Vect.cpp ../../Source/SetOfFigures.cpp ../../Source/Dessin.cpp ../../Source/Fonctions.cpp ../../Source/Polygon.cpp ../../Source/Command.cpp ../../Source/UndoRedo.cpp -o main

@@ -20,10 +20,12 @@
 #include "Intersection.h"
 #include "Fonctions.h"
 #include "Command.h"
+#include "Polygon.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
+#include <stdexcept>
+    
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -46,27 +48,48 @@
 			string n = tabData[1];
 			if(this->GetFigure(n) == NULL)
 			{	if(type == "S" && nElt == 6)
-				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
-					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
-					Segment *s = new Segment(n, p1, p2);
-					this->Add(s);
+				{	try 
+					{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+						Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+						Segment *s = new Segment(n, p1, p2);
+						this->Add(s);
+					}
+					catch(invalid_argument& e)
+					{	cout << "# Erreur parametre dans segment" << endl;
+						return false;
+					}					
 				}
 				else if(type == "R" && nElt == 6)
-				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
-					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
-					Rectangle *r = new Rectangle(n, p1, p2);
-					this->Add(r);
+				{	try 
+					{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+						Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+						Rectangle *r = new Rectangle(n, p1, p2);
+						this->Add(r);
+					}
+					catch(invalid_argument& e)
+					{	cout << "# Erreur parametre dans rectangle" << endl;
+						return false;
+					}	
 				} 
 				else if(type == "PC")
-				{	/*Polygone *p = new Polygone(n);
-					for(int i=1;i<nElt;i+=2) {
-						Vect point(stoi(tabData[i].c_str()), stoi(tabData[i+1].c_str()));
-						p->Add(p);
+				{	Polygon *p = new Polygon(n);
+					for(int i=2;i<nElt;i+=2)
+					{	try 
+						{	Vect point(stoi(tabData[i].c_str()), stoi(tabData[i+1].c_str()));
+							p->Add(point);
+						}
+						catch(std::invalid_argument& e)
+						{	cout << "# Erreur parametre dans polygone" << endl;
+							return false;
+						}	
 					}
-					if(p->IsConnexe())
+					if(p->IsConvexe())
 						this->Add(p);
 					else
-						return false;*/
+					{
+						cout << "# Erreur polygone non convexe" << endl;
+						return false;
+					}
 				}
 				else if(type == "OR")
 				{	Union *u = new Union(n);
@@ -74,6 +97,9 @@
 					{	Figure *f = this->GetFigure(tabData[i]);
 						if(f != NULL)
 						{	u->Add(f->Copy());
+						}
+						else
+						{	cout << "# Attention figure " + tabData[i] + " n'existe pas donc non ajoutee" << endl;
 						}
 					}
 					this->Add(u);
@@ -85,6 +111,9 @@
 						if(f != NULL)
 						{	u->Add(f->Copy());
 						}
+						else
+						{	cout << "# Attention figure " + tabData[i] + " n'existe pas donc non ajoutee" << endl;
+						}
 					}
 					this->Add(u);
 				}
@@ -93,6 +122,7 @@
 				}
 				else
 				{	delete[] tabData;
+					cout << "# Erreur format inconnu" << endl;
 					return false;
 				}
 				delete[] tabData;
@@ -100,6 +130,7 @@
 			}
 		}
 		delete[] tabData;
+		cout << "# Erreur format inconnu" << endl;
 		return false;
 	} //----- Fin de AddFigure
 
@@ -108,7 +139,6 @@
 	//
 	{
 		stringstream ss;
-		ss << "D " << this->GetName() << " " << this->figures.size();
 		ss << SetOfFigures::Print();
 		string str = ss.str();
 		return str;
@@ -123,7 +153,8 @@
 		{	return f->IsIn(p);
 		}
 		else
-		{	return false;
+		{	cout << "# Erreur la figure n'existe pas" << endl;
+			return false;
 		}
 	} //----- Fin de IsIn
 
@@ -150,17 +181,22 @@
 		{	f->Move(p);
 			return true;
 		}
-		return false;
+		else
+		{	cout << "# Erreur la figure n'existe pas" << endl;
+			return false;
+		}
 	} //----- Fin de MoveFigure
 
 	bool Dessin::Remove(const string &name)
 	{
 		if(this->GetFigure(name) != NULL)
-		{	figures.erase(name);
+		{	delete figures[name];
+			figures.erase(name);
 			return true; 
 		}
 		else
-		{	return false;
+		{	cout << "# Erreur la figure n'existe pas" << endl;
+			return false;
 		}
 	}
 
@@ -179,7 +215,8 @@
 			return true;
         }
 		else
-		{	return false;
+		{	cout << "# Erreur ouverture fichier " << link << endl;
+			return false;
 		}
 	} //----- Fin de Save
 
@@ -224,20 +261,48 @@
 			string n = tabData[1];
 			if(conteneur->GetFigure(n) == NULL)
 			{	if(type == "S" && nElt == 6)
-				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
-					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
-					Segment *s = new Segment(n, p1, p2);
-					conteneur->Add(s);
+				{	try 
+					{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+						Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+						Segment *s = new Segment(n, p1, p2);
+						conteneur->Add(s);
+					}
+					catch(std::invalid_argument& e)
+					{	cout << "# Erreur parametre dans segment" << endl;
+						return false;
+					}	
 				}
 				else if(type == "R" && nElt == 6)
-				{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
-					Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
-					Rectangle *r = new Rectangle(n, p1, p2);
-					conteneur->Add(r);
+				{	try 
+					{	Vect p1(stoi(tabData[2].c_str()), stoi(tabData[3].c_str()));
+						Vect p2(stoi(tabData[4].c_str()), stoi(tabData[5].c_str()));
+						Rectangle *r = new Rectangle(n, p1, p2);
+						conteneur->Add(r);
+					}
+					catch(std::invalid_argument& e)
+					{	cout << "# Erreur parametre dans rectangle" << endl;
+						return false;
+					}
 				} 
 				else if(type == "PC")
 				{
-
+					Polygon *p = new Polygon(n);
+					for(int i=2;i<nElt;i+=2)
+					{	try 
+						{	Vect point(stoi(tabData[i].c_str()), stoi(tabData[i+1].c_str()));
+							p->Add(point);
+						}
+						catch(std::invalid_argument& e)
+						{	cout << "# Erreur parametre dans polygone" << endl;
+							return false;
+						}
+					}
+					if(p->IsConvexe())
+						this->Add(p);
+					else
+					{	cout << "# Erreur polygone non convexe" << endl;
+						return false;
+					}
 				}
 				else if(type == "OR" || type == "OI")
 				{	SetOfFigures *u = NULL;
@@ -257,6 +322,7 @@
 						else
 						{	if(this->AddByLoad(cmd, u,fichier) == false)
 							{	delete[] tabData;
+								cout << "# Attention figure " + tabData[i] + " n'existe pas donc non ajoutee" << endl;
 								return false;
 							}
 						}
@@ -285,8 +351,7 @@
 	//
 	{
 		this->SetName(unDessin.GetName());
-		map<string, Figure *> ens = unDessin.GetFigures();
-		for(map<string, Figure *>::iterator mi = ens.begin(); mi != ens.end(); ++mi)
+		for(map<string, Figure *>::iterator mi = unDessin.GetFigures().begin(); mi != unDessin.GetFigures().end(); ++mi)
 		{	if(mi->second != NULL)
 			{	figures[mi->first] = mi->second->Copy();
 			}	
@@ -302,13 +367,6 @@
 	#ifdef MAP
 		cout << "Appel au constructeur de copie de <Dessin>" << endl;
 	#endif
-		this->SetName(unDessin.GetName());
-		map<string, Figure *> ens = unDessin.GetFigures();
-		for(map<string, Figure *>::iterator mi = ens.begin(); mi != ens.end(); ++mi)
-		{	if(mi->second != NULL)
-			{	figures[mi->first] = mi->second->Copy();
-			}	
-		}
 	} //----- Fin de Dessin (constructeur de copie)
 
 

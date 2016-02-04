@@ -1,8 +1,8 @@
 /*************************************************************************
                            Polygon  -  description
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+    début                : 12/01/2016
+    copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio
 *************************************************************************/
 
 //---------- Interface de la classe <Polygon> (fichier Polygon.h) ------
@@ -29,11 +29,6 @@ class Polygon : public Figure
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 	string Print() const;
 	// Mode d'emploi :
     //	Méthode qui affiche une figure
@@ -67,13 +62,45 @@ public:
     // Contrat :
     //
 
-    bool InitPoy( const vector<Vect> & aListPoint);
+	int GetNbPoints() const;
+    // Mode d'emploi :
+    //  Méthode qui renvoie le nombre de point dans le polygone
+    // Contrat :
+    //
 
-	Vect GetP1 ();
-	Vect GetP2 ();
-	void SetP1 ();
-	void SetP2 ();
+    bool IsConvexe() const;
+    // Mode d'emploi :
+    //  Méthode qui renvoie TRUE si le polygone est connexe, FALSE sinon
+    // Contrat :
+    //
 
+    void Add(const Vect &p);
+    // Paramètre
+    //  p : nouveau point
+    // Mode d'emploi :
+    //  Méthode qui ajoute un point au polygone
+    // Contrat :
+    //
+
+    vector<Vect> GetPoints() const;
+    // Mode d'emploi :
+    //  Méthode qui renvoie tous les points du polygone
+    // Contrat :
+    //
+
+    void SetPoints(const vector<Vect> &list);
+    // Paramètre
+    //  list : liste de point
+    // Mode d'emploi :
+    //  Méthode qui modifie tous les points du polygone
+    // Contrat :
+    //
+
+    void RemoveAll();
+    // Mode d'emploi :
+    //  Supprime tous les points d'un polygone
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Polygon & operator = ( const Polygon & unPolygon );
@@ -90,7 +117,9 @@ public:
     // Contrat :
     //
 
-    Polygon (string nom );
+    Polygon ( string nom );
+    // Paramètre
+    //  nom : nom du polygone
     // Mode d'emploi :
     //
     // Contrat :

@@ -1,10 +1,14 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
 TestCommand;2;1;2;2;1
-TestDessin;2;0;2;2;0
+TestDessin;2;1;2;2;1
+TestFinal1;2;1;2;2;1
+TestFinal2;2;1;2;2;1
+TestFinal3;2;1;2;2;1
+TestFinal4;2;1;2;2;1
 TestIntersection;2;1;2;2;1
-TestPolygone;2;0;2;2;0
+TestPolygone;2;1;2;2;1
 TestRectangle;2;1;2;2;1
-TestSegment;2;0;2;2;0
-TestUndoRedo;2;0;2;2;0
+TestSegment;2;1;2;2;1
+TestUndoRedo;2;1;2;2;1
 TestUnion;2;1;2;2;1
 TestVect;2;1;2;2;1

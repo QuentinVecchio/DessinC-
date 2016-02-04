@@ -38,13 +38,44 @@
     // Algorithme :
 	//
 	{
-		undo.push(cmd);
+		if(undo.size() < limit)
+		{	undo.push(cmd);
+		}
+		else
+		{	stack<Command> pile;
+			pile.push(cmd);
+			while(undo.empty() == false)
+			{	pile.push(undo.top());
+				undo.pop();
+			}	
+			pile.pop();
+			while(pile.empty() == false)
+			{	undo.push(pile.top());
+				pile.pop();
+			}
+		}
+
 	} //----- Fin de AddUndo
 
     void UndoRedo::AddRedo(const Command &cmd)
     // Algorithme :
 	//
-	{	redo.push(cmd);
+	{	if(redo.size() <= limit)
+		{	redo.push(cmd);
+		}
+		else
+		{	stack<Command> pile;
+			pile.push(cmd);
+			while(redo.empty() == false)
+			{	pile.push(redo.top());
+				redo.pop();
+			}	
+			pile.pop();
+			while(pile.empty() == false)
+			{	redo.push(pile.top());
+				pile.pop();
+			}
+		}
 	} //----- Fin de AddRedo
 
     string UndoRedo::Undo()
@@ -53,7 +84,7 @@
 	{
 		if(undo.empty() == false) 
 		{	string c = undo.top().GetUnExecute();
-			redo.push(undo.top());
+			AddRedo(undo.top());
 			undo.pop();
 			return c;
 		} 
@@ -68,7 +99,7 @@
 	{
 		if(redo.empty() == false) 
 		{	string c = redo.top().GetExecute();
-			undo.push(redo.top());
+			AddUndo(redo.top());
 			redo.pop();
 			return c;
 		} 
@@ -76,6 +107,20 @@
 		{	return "";
 		}
 	} //----- Fin de Redo
+
+	unsigned int UndoRedo::GetLimit() const
+    // Algorithme :
+	//
+	{
+		return limit;
+	} //----- Fin de GetLimit
+
+    void UndoRedo::SetLimit(const unsigned int limit)
+    // Algorithme :
+	//
+	{
+		this->limit = limit;
+	} //----- Fin de SetLimit
 
     UndoRedo* UndoRedo::Copy( ) const
     // Algorithme :
@@ -92,6 +137,7 @@
 	{
 		undo = unUndoRedo.undo;
 		redo = unUndoRedo.redo;
+		limit = unUndoRedo.limit;
 		return *this;
 	} //----- Fin de operator =
 
@@ -105,16 +151,18 @@
 	#endif
 		undo = unUndoRedo.undo;
 		redo = unUndoRedo.redo;
+		limit = unUndoRedo.limit;
 	} //----- Fin de UndoRedo (constructeur de copie)
 
 
-	UndoRedo::UndoRedo ()
+	UndoRedo::UndoRedo ( const unsigned int limit )
 	// Algorithme :
 	//
 	{
 	#ifdef MAP
 		cout << "Appel au constructeur de <UndoRedo>" << endl;
 	#endif
+		this->limit = limit;
 	} //----- Fin de UndoRedo
 
 

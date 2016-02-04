@@ -1,3 +1,19 @@
-R r1 -10 10 10 -10
-R r2 0 15 15 0
-HIT r1 0 2
+R rec1 2 2 0 4
+R rec2 2 2 0 7
+R rec3 2 2 0 9
+S seg1 5 5 5 0
+PC pol1 -1 5 -2 2 -2 -2 1 -3 3 1
+LIST
+UNDO
+UNDO
+LIST
+MOVE rec1 2 2
+LIST
+UNDO
+LIST
+REDO
+LIST
+LOAD TestFinal4/load.txt
+LIST
+UNDO
+LIST
