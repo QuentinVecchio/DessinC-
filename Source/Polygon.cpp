@@ -42,26 +42,33 @@ string Polygon:: Print() const
 
 
 bool Polygon::IsIn( const Vect &p ) const
+// Algorithme :
+// on considére chauqe coté du polygone comme un vecteur  Vk orienté du point k vers le point k+1;
+// calcule des produit vecteurielle de chaque vecteurs Vk avec le vecteur qui vas du point a tester au point k 
+// on verifi qu'il sont tous de même signe.
 {
 	Vect vect1 = listePoints[0]-listePoints[1];
 	Vect vect2 = listePoints[1]-p;
-	int prodv1 = Vect::ProdVect(vect1,vect2);
+	int prodvCur = Vect::ProdVect(vect1,vect2);
 	int unsigned listSize= listePoints.size();
+	int prodvPrivus;
 
 	for(int unsigned tabIndex=2;tabIndex<listSize;tabIndex++)
 		{
+			prodvPrivus= prodvCur;
 			vect1 = listePoints[tabIndex-1]-listePoints[tabIndex];
 			vect2 = listePoints[tabIndex]-p;
-			int prodvcur = Vect::ProdVect(vect1,vect2);
-			if (prodvcur*prodv1<0)
+			prodvCur = Vect::ProdVect(vect1,vect2);
+			if (!prodvCur*prodvPrivus>0)
 			{
 				return false;
 			}
 		}
+	prodvPrivus= prodvCur;
 	vect1 = listePoints[listSize-1]-listePoints[0];
 	vect2 = listePoints[0]-p;
-	int prodvcur = Vect::ProdVect(vect1,vect2);
-	if (prodvcur*prodv1<0)
+	prodvCur = Vect::ProdVect(vect1,vect2);
+	if (prodvCur*prodvPrivus<0)
 		{
 			return false;
 		}
@@ -90,7 +97,6 @@ bool Polygon::IsConvexe( ) const
 // on considére chauqe coté du polygone comme un vecteur orienté du point k-1 vers le point k;
 // calcule des produit vecteurielle des vecteurs consécutifes
 // on verifi qu'il sont tous de même signe.
-// TODO eviter le boucles.
 {
 	Vect vect1 = listePoints[0]-listePoints[1];
 	Vect vect2 = listePoints[1]-listePoints[2];
@@ -102,20 +108,20 @@ bool Polygon::IsConvexe( ) const
 		vect1 = listePoints[tabIndex-2]-listePoints[tabIndex-1];
 		vect2 = listePoints[tabIndex-1]-listePoints[tabIndex];
 		int prodvcur = Vect::ProdVect(vect1,vect2);
-		if (prodvcur*prodv1<0)
+		if (!(prodvcur*prodv1>0))
 		{	return false;
 		}
 	}
 	vect1 = listePoints[listSize-2]-listePoints[listSize-1];
 	vect2 = listePoints[listSize-1]-listePoints[0];
 	int prodvcur = Vect::ProdVect(vect1,vect2);
-	if (prodvcur*prodv1<0)
+	if (!(prodvcur*prodv1>0))
 	{	return false;
 	}
 	vect1 = listePoints[listSize-2]-listePoints[listSize-1];
 	vect2 = listePoints[listSize-1]-listePoints[0];
 	prodvcur = Vect::ProdVect(vect1,vect2);
-	if (prodvcur*prodv1<0)
+	if (!(prodvcur*prodv1>0))
 	{	return false;
 	}
 	return true;
