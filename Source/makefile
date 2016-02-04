@@ -14,7 +14,7 @@ RM=@rm
 ECHO=@echo
 RMFLAGS=-f
 OUTPUT=-o
-INT= Figure.h Dessin.h Vect.h Rectangle.h SetOfFigures.h Union.h Segment.h Fonctions.h Intersection.h
+INT= Figure.h Dessin.h Vect.h Rectangle.h SetOfFigures.h Union.h Segment.h Fonctions.h Intersection.h UndoRedo.h Command.h Polygon.h
 CPP=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 CLEAR=clear

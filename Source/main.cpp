@@ -14,9 +14,9 @@
 #include <cstdio>
 #include <cstring>
 #include <map>
-#include "../../Source/Dessin.h"
-#include "../../Source/Fonctions.h"
-#include "../../Source/UndoRedo.h"
+#include "Dessin.h"
+#include "Fonctions.h"
+#include "UndoRedo.h"
 using namespace std;
 //------------------------------------------------------ Include personnel
 
