@@ -15,6 +15,7 @@
 
 //------------------------------------------------------ Include personnel
 #include "Segment.h"
+#include <cmath> 
 //#include "Vect.h"
 
 //------------------------------------------------------------- Constantes
@@ -77,6 +78,9 @@ Segment* Segment::Copy( ) const
 	return s;
 } //----- Fin de Copy
 
+
+
+
 Vect Segment::GetP1( ) const
 // Algorithme :
 //
@@ -109,7 +113,8 @@ float Segment::GetLength( ) const
 // Algorithme :
 //
 {
-	return 0;
+	Vect p = p2-p1;
+	return sqrt(p.GetX()*p.GetX()+p.GetY()*p.GetY());
 } //----- Fin de GetLength
 
 //------------------------------------------------- Surcharge d'opérateurs

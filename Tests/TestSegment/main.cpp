@@ -22,5 +22,8 @@ int main()
 	cout  << s1 << endl;
 	s1.Move(P4);
 	cout << s1 << endl;
+	Vect P7 (0,0);
+	Segment s2("sgm2",P2,P7);
+	cout << s2.GetLength()<< endl;
 	return 0;
 }

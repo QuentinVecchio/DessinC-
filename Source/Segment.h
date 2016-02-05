@@ -66,6 +66,7 @@ public:
     // Contrat :
     //
 
+
 	Vect GetP1 ( ) const;
     // Mode d'emploi :
     //  Renvoie le point p1 du segment
