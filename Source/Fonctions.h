@@ -15,7 +15,7 @@
     
 //---------------------------- Fonctions --------------------------------
 int Parseur(const string & donnees, const char separateur, string *tab, const int taille);
-bool interpretreCommande(string commande, Dessin *dessin, UndoRedo *pile, map<string,Figure*> *exclu, bool callByUndoRedo);
+bool interpreteCommande(string commande, Dessin **dessin, UndoRedo *pile, map<string,Figure*> *exclu, map<string,Dessin*> *dessinExclu, bool callByUndoRedo);
 string getCommande(string commande);
 int getNbParametre(string commande);
 string getParametre(string commande, int n);

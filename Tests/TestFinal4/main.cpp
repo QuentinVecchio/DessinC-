@@ -36,11 +36,12 @@ int main()
 	Dessin *d = new Dessin("Dessin");
 	UndoRedo *pile = new UndoRedo(20);
 	map<string,Figure*> *exclu = new map<string,Figure*>();
+	map<string,Dessin*> *dessinExclu = new map<string,Dessin*>();
 	bool stop = false;
 	do
 	{	cin.tie(0);
 		if(getline(cin,commande))
-		{	stop = interpretreCommande(commande, d, pile, exclu, false);
+		{	stop = interpreteCommande(commande, &d, pile, exclu, dessinExclu, false);
 		}
 		else
 		{	stop = true;
@@ -51,7 +52,13 @@ int main()
 		{	delete mi->second;	
 		}		
 	}
+	for(map<string, Dessin *>::iterator mi = dessinExclu->begin(); mi != dessinExclu->end(); ++mi)
+	{	if(mi->second != NULL)
+		{	delete mi->second;	
+		}		
+	}
 	delete exclu;
+	delete dessinExclu;
 	delete pile;
 	delete d;
 	return 0;

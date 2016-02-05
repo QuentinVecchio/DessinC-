@@ -2,7 +2,7 @@
                            SetOfFigures  -  description
                              -------------------
     début                : 12/01/2016
-    copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio	
+    copyright            : (C) 2015 par Adrien Lepic et Quentin Vecchio 
 *************************************************************************/
 
 //---------- Interface de la classe <SetOfFigures> (fichier SetOfFigures.h) ------
@@ -25,8 +25,8 @@ using namespace std;
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <SetOfFigures>
-//	La classe SetOfFigures est une classe abstraite qui permet de représenter un
-//	ensemble de figure.
+//  La classe SetOfFigures est une classe abstraite qui permet de représenter un
+//  ensemble de figure.
 //
 //------------------------------------------------------------------------ 
 
@@ -36,17 +36,17 @@ class SetOfFigures : public Figure
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	map<string, Figure*> GetFigures() const;
-	// Mode d'emploi :
-    //	Cette méthode renvoie un ensemble de figure
+    map<string, Figure*> GetFigures() const;
+    // Mode d'emploi :
+    //  Cette méthode renvoie un ensemble de figure
     // Contrat :
-    //	
+    //  
 
-	void SetFigures( const map<string, Figure*> &ens );
-	// Paramètre
-	//	ens : ensemble de figure
-	// Mode d'emploi :
-    //	Modification de l'ensemble de figure
+    void SetFigures( const map<string, Figure*> &ens );
+    // Paramètre
+    //  ens : ensemble de figure
+    // Mode d'emploi :
+    //  Modification de l'ensemble de figure
     // Contrat :
     //
 
@@ -84,19 +84,19 @@ public:
     // Contrat :
     //
 
-	string Print() const;
-	// Mode d'emploi :
-    //	Méthode qui affiche un SetOfFigures
+    virtual string Print() const;
+    // Mode d'emploi :
+    //  Méthode qui affiche un SetOfFigures
     // Contrat :
     //
 
-	virtual bool IsIn( const Vect &p ) const = 0;
-	// Paramètre
-	//	p : Vect pour lequel on veut savoir si il fait partie de la SetOfFigures
-	// Mode d'emploi :
-    //	Méthode qui test si un Vect appartient à une SetOfFigures
-	//	TRUE si le Vect appartient, FALSE sinon
-	//	Méthode virtuel 
+    virtual bool IsIn( const Vect &p ) const = 0;
+    // Paramètre
+    //  p : Vect pour lequel on veut savoir si il fait partie de la SetOfFigures
+    // Mode d'emploi :
+    //  Méthode qui test si un Vect appartient à une SetOfFigures
+    //  TRUE si le Vect appartient, FALSE sinon
+    //  Méthode virtuel 
     // Contrat :
     //
 
@@ -107,21 +107,16 @@ public:
     //  Méthode virtuel 
     // Contrat :
     //
-	
-	void Move( const Vect &p );
-	// Paramètre
-	//	p : Vect de déplacement
-	// Mode d'emploi :
-    //	Méthode qui fait bouger une SetOfFigures
+    
+    void Move( const Vect &p );
+    // Paramètre
+    //  p : Vect de déplacement
+    // Mode d'emploi :
+    //  Méthode qui fait bouger une SetOfFigures
     // Contrat :
     //
 
 //------------------------------------------------- Surcharge d'opérateurs
-	friend ostream& operator<<(ostream& out, const SetOfFigures &f);
-	// Mode d'emploi :
-    //	Méthode qui surcharge l'affichage
-    // Contrat :
-    //
 
 //-------------------------------------------- Constructeurs - destructeur
     virtual ~SetOfFigures ( );
@@ -134,17 +129,17 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	SetOfFigures ( const SetOfFigures & uneSetOfFigures );
-	//Paramètre
-	//	uneSetOfFigures : unSetOfFigures déjà initialisée
+    SetOfFigures ( const SetOfFigures & uneSetOfFigures );
+    //Paramètre
+    //  uneSetOfFigures : unSetOfFigures déjà initialisée
     // Mode d'emploi (constructeur de copie) :
-    //	Constructeur protégée car la classe est abstraite
+    //  Constructeur protégée car la classe est abstraite
     // Contrat :
     //
 
     SetOfFigures ( const string & name);
     // Mode d'emploi :
-    //	Constructeur protégée car la classe est abstraite
+    //  Constructeur protégée car la classe est abstraite
     // Contrat :
     //
 

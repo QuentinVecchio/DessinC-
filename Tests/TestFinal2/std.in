@@ -3,3 +3,8 @@ R r2 0 15 15 0
 OR r12 r1 r2
 DELETE r1
 HIT r12 -9 -9
+R r3 10 10 -10 -10
+R r4 15 15 0 0
+OR r34 r3 r4
+DELETE r3
+HIT r34 -9 -9

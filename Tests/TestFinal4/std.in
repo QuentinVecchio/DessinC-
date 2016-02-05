@@ -13,7 +13,22 @@ UNDO
 LIST
 REDO
 LIST
-LOAD TestFinal4/load.txt
+LOAD load.txt
 LIST
+UNDO
+LIST
+OR union1 rec1 rec2
+OI intersection1 rec1 rec2
+LIST
+UNDO
+UNDO
+LIST
+REDO
+REDO
+LIST
+DELETE rec1
+DELETE union1
+LIST
+UNDO
 UNDO
 LIST

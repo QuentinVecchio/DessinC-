@@ -4,3 +4,9 @@ OR r12 r1 r2
 MOVE r12 100 100
 HIT r12 -9 -9
 HIT r1 -9 -9
+R r3 10 10 -10 -10
+R r4 15 15 0 0
+OR r34 r1 r2
+MOVE r34 100 100
+HIT r34 -9 -9
+HIT r3 -9 -9

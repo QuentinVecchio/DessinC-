@@ -122,13 +122,6 @@
 	} //----- Fin de Move
 
 //------------------------------------------------- Surcharge d'opérateurs
-	ostream& operator<<( ostream& out, const SetOfFigures &f )
-	// Algorithme :
-	//
-	{
-		out << f.Print();
-		return out;
-	}//----- Fin de operator << 
 
 //-------------------------------------------- Constructeurs - destructeur
 	SetOfFigures::SetOfFigures ( const SetOfFigures & unSetOfFigures ) : Figure(unSetOfFigures.GetName())

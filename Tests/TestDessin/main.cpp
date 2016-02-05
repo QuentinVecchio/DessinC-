@@ -73,7 +73,7 @@ int main()
 	//	Méthode Save
 	d1.Save("test.txt");
 	//	Méthode Load
-	d1.Load("TestDessin/save.txt");
+	d1.Load("save.txt");
 	cout << d1 << endl;
 	return 0;
 }

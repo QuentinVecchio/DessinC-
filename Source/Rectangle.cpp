@@ -33,14 +33,14 @@ int Rectangle::GetWeight() const
 // Algorithme :
 //
 {
-	return (p2.GetX() - p1.GetX());
+	return abs(p2.GetX() - p1.GetX());
 } //----- Fin de GetWeight
 
 int Rectangle::GetLength() const
 // Algorithme :
 //
 {
-	return (p1.GetY() - p2.GetY());
+	return abs(p1.GetY() - p2.GetY());
 } //----- Fin de GetLength
 
 Vect Rectangle::GetP1() const
@@ -90,11 +90,16 @@ Rectangle* Rectangle::Copy( ) const
 } //----- Fin de Copy
 
 
-bool Rectangle::IsIn( const Vect &Vect ) const
+bool Rectangle::IsIn( const Vect &vect ) const
 // Algorithme :
 //
 {
-	return (Vect.GetX() >= p1.GetX() && Vect.GetX() <= p2.GetX()) && (Vect.GetY() <= p1.GetY() && Vect.GetY() >= p2.GetY());
+	if((p1.GetX() >= p2.GetX()) && (p1.GetY() >= p2.GetY()))
+	{	return (vect.GetX() >= p2.GetX() && vect.GetX() <= p1.GetX()) && (vect.GetY() >= p2.GetY() && vect.GetY() <= p1.GetY());
+	}
+	else
+	{	return (vect.GetX() >= p1.GetX() && vect.GetX() <= p2.GetX()) && (vect.GetY() <= p1.GetY() && vect.GetY() >= p2.GetY());
+	}
 } //----- Fin de IsIn
 
 void Rectangle::Move( const Vect &Vect )
