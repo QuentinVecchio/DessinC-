@@ -59,7 +59,7 @@ bool Polygon::IsIn( const Vect &p ) const
 			vect1 = listePoints[tabIndex-1]-listePoints[tabIndex];
 			vect2 = listePoints[tabIndex]-p;
 			prodvCur = Vect::ProdVect(vect1,vect2);
-			if (!prodvCur*prodvPrivus>0)
+			if (prodvCur*prodvPrivus<0)
 			{
 				return false;
 			}

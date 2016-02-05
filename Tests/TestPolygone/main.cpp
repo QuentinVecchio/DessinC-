@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../../source/Vect.h"
-#include "../../source/Polygon.h"
+#include "../../Source/Vect.h"
+#include "../../Source/Polygon.h"
 
 using namespace std;
 
